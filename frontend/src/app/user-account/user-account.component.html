@@ -1,0 +1,129 @@
+<!--<img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.png">
+        <img *ngIf="!property.Image" class="card-img-top" src="assets/images/house_default.png">-->
+
+
+
+<div class="row shadow">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img class="card-img-top" src="../../assets/open-tunisia.png" height="350px">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title" style="text-align: center;">{{user.lastName}} {{user.firstName}}</h1>
+      </div>
+  </div>
+  </div>
+  <div class="col-sm-8 p-0">
+    <div class="tab-panel">
+      <tabset class="member-tabset">
+        <tab heading="Profille">
+          <div class="container">
+          <h1>Profile</h1>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="heading">
+                      <strong>Prénom</strong>
+                      <p>{{user.lastName}}</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Nom</strong>
+                      <p>{{user.firstName}}</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>CIN</strong>
+                      <p>{{user.CIN}}</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Email</strong>
+                      <p>{{user.email}}</p>
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="heading">
+                      <strong>Tel</strong>
+                      <p>{{user.tel}}</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Addresse</strong>
+                      <p>{{user.address}}</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>{{user.webSite}}</strong>
+                      <p>a</p>
+                  </div>
+                  <div class="heading">
+                      <strong>Fax</strong>
+                      <p>{{user.fax}}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+
+
+        <tab heading="Societé">
+          <div class="container">
+          <h1>Societé</h1>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="heading">
+                      <strong>Project Name</strong>
+                      <p>a</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Floor Number</strong>
+                      <p>a</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Age of Property</strong>
+                      <p>a</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Posession</strong>
+                      <p>a</p>
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="heading">
+                      <strong>Main Entrance</strong>
+                      <p>a</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Gated Community</strong>
+                      <p>a</p>
+                  </div>
+
+                  <div class="heading">
+                      <strong>Security Deposit</strong>
+                      <p>a</p>
+                  </div>
+                  <div class="heading">
+                      <strong>Maintenance</strong>
+                      <p>a</p>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="heading">
+                      <strong>About Property</strong>
+                      <p>a</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
