@@ -35,36 +35,36 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    raisonSociale = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    capitalSociale = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    siegeSociale = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    formeJuridique = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    matriculFiscal = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    RNE = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    secteurActivité = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    produits = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    raisonSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    capitalSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    siegeSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    formeJuridique = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    matriculFiscal = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    RNE = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    secteurActivité = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    produits = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     nbreEmployes = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     tel = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     email = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     fax = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     webSite = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    ownerId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Companies_Users_ownerId",
-                        column: x => x.ownerId,
+                        name: "FK_Companies_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Companies_ownerId",
+                name: "IX_Companies_UserId",
                 table: "Companies",
-                column: "ownerId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

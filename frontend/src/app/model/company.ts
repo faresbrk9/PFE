@@ -12,6 +12,7 @@ export class Company {
   public tel: string,
   public fax: string,
   public email: string,
-  public webSite: string
+  public webSite: string,
+  public UserId: string|number
   ) {}
 }

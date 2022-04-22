@@ -43,8 +43,5 @@ namespace webAPI.Models
 
         [Column(TypeName = "nvarchar(255)")]
         public string? webSite { get; set; }
-
-        //public List<Company> companies { get; set; }
-
     }
 }

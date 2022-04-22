@@ -90,7 +90,7 @@ namespace webAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Crud
+        // POST: api/user
         [HttpPost]
         public async Task<ActionResult<User>> addUser(User user)
         {

@@ -28,17 +28,17 @@ namespace webAPI.Controllers
         }
 
         // GET: api/Company/5
-        [HttpGet("{ownerId}")]
-        public async Task<ActionResult<List<Company>>> GetCompanyByOwner(int ownerId)
+        [HttpGet("{UserId}")]
+        public async Task<ActionResult<List<Company>>> GetCompanyByOwner(int UserId)
         {
-            var company = await _context.Companies.Where(x => x.ownerId == ownerId).ToListAsync();
+            var company = await _context.Companies.Where(x => x.UserId == UserId).ToListAsync();
 
             if (company == null)
             {
-                return NotFound();
+                return Ok(Unauthorized());
             }
 
-            return company;
+            return Ok(company);
         }
 
         // PUT: api/Company/5
@@ -71,16 +71,6 @@ namespace webAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Company
-        [HttpPost]
-        public async Task<ActionResult<Company>> addCompany(Company company)
-        {
-            _context.Companies.Add(company);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCompany", new { id = company.Id }, company);
-        }
-
         // DELETE: api/Company/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
@@ -100,6 +90,33 @@ namespace webAPI.Controllers
         private bool UserExists(int id)
         {
             return _context.Companies.Any(e => e.Id == id);
+        }
+
+
+        // POST: api/Company
+        [HttpPost]
+        public async Task<ActionResult<Company>> addCompany(Company company)
+        {
+            var com = new Company();
+            com.raisonSociale = company.raisonSociale;
+            com.capitalSociale = company.capitalSociale;
+            com.siegeSociale = company.siegeSociale;
+            com.formeJuridique = company.formeJuridique;
+            com.matriculFiscal = company.matriculFiscal;
+            com.RNE = company.RNE;
+            com.secteurActivite = company.secteurActivite;
+            com.produits = company.produits;
+            com.nbreEmployes = company.nbreEmployes;
+            com.tel = company.tel;
+            com.email = company.email;
+            com.fax = company.fax;
+            com.webSite = company.webSite;
+            com.UserId  = company.UserId;
+            
+            _context.Companies.Add(com);
+            await _context.SaveChangesAsync();
+
+            return StatusCode(201);
         }
     }
 }

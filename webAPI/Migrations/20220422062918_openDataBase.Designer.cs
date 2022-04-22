@@ -11,8 +11,8 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220324142443_openDB")]
-    partial class openDB
+    [Migration("20220422062918_openDataBase")]
+    partial class openDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,12 @@ namespace webAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("RNE")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("capitalSociale")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("email")
@@ -46,33 +47,24 @@ namespace webAPI.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("formeJuridique")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("matriculFiscal")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("nbreEmployes")
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("ownerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("produits")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("raisonSociale")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("secteurActivité")
-                        .IsRequired()
+                    b.Property<string>("secteurActivite")
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("siegeSociale")
-                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("tel")
@@ -83,7 +75,7 @@ namespace webAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ownerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Companies");
                 });
@@ -135,13 +127,13 @@ namespace webAPI.Migrations
 
             modelBuilder.Entity("webAPI.Models.Company", b =>
                 {
-                    b.HasOne("webAPI.Models.User", "owner")
+                    b.HasOne("webAPI.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("ownerId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("owner");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,7 +30,7 @@ namespace webAPI.Models
         public string? RNE { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
-        public string? secteurActivité { get; set; }
+        public string? secteurActivite { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string? produits { get; set; }
@@ -50,8 +50,9 @@ namespace webAPI.Models
         [Column(TypeName = "nvarchar(255)")]
         public string? webSite { get; set; }
 
-        public User owner { get; set; }
+        [ForeignKey("ownerId")]
+        public int UserId { get; set; }
 
-        public int? ownerId { get; set; }
+        public User User { get; set; }
     }
 }

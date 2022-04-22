@@ -22,6 +22,7 @@ export class NavigationBarComponent implements OnInit {
 
   onLogout() {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("companyInfo");
 
   }
   get isUserlogin() {

@@ -37,4 +37,8 @@ getCompanyByOwner(ownerId:number|string):Observable<any[]> {
   return this.http.get<any>(this.url2 + `/${ownerId}`);
 }
 
+addCompany(data:any) {
+  return this.http.post(this.url2, data);
+}
+
 }
