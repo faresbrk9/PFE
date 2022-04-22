@@ -12,9 +12,9 @@ export class NavigationBarComponent implements OnInit {
   user = JSON.parse(this.getUser);
 
   constructor(private router: Router) {
-    if (this.isUserlogin) {
+    /*if (this.isUserlogin) {
        this.router.navigate(["/login"]);
-     }
+     }*/
    }
 
   ngOnInit() {
