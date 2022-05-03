@@ -22,7 +22,9 @@ namespace webAPI.Migrations
                     tel = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     address = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     fax = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    webSite = table.Column<string>(type: "nvarchar(255)", nullable: true)
+                    webSite = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    isAccepted = table.Column<bool>(type: "bit", nullable: false),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +43,7 @@ namespace webAPI.Migrations
                     formeJuridique = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     matriculFiscal = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     RNE = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    secteurActivité = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    secteurActivite = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     produits = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     nbreEmployes = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     tel = table.Column<string>(type: "nvarchar(255)", nullable: true),

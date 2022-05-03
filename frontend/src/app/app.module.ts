@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {Routes, RouterModule} from '@angular/router'
@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HomeComponent } from './home/home.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   {path: 'show-list',component: ShowUserListComponent},
   {path: 'sign-up',component: SignInComponent},
   {path: 'login', component: LoginComponent},
+  {path : 'user-management', component: UserManagementComponent},
   {path: '',component: HomeComponent}
 ]
 
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
       LoginComponent,
       NavigationBarComponent,
       UserAccountComponent,
-      HomeComponent
+      HomeComponent,
+      UserManagementComponent
    ],
   imports: [
     BrowserModule,

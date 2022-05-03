@@ -21,8 +21,12 @@ addUser(data:any) {
   return this.http.post(this.url, data);
 }
 
-deleteUser(id:number|string) {
+declineUser(id:number|string) {
   return this.http.delete(this.url + `/${id}`);
+}
+
+acceptUser(id:number|string) {
+  return this.http.post(`${this.url}/acceptInscription`, id);
 }
 
 login(data:any) {

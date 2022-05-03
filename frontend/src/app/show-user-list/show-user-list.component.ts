@@ -23,7 +23,7 @@ export class ShowUserListComponent implements OnInit {
   }
 
   onDelete(id:number|string){
-    this.service.deleteUser(id).subscribe();
+    this.service.declineUser(id).subscribe();
     setTimeout(() => {window.location.reload();
     }, 100);
 

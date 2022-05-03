@@ -104,6 +104,12 @@ namespace webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("isAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");

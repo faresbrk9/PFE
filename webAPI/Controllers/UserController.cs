@@ -27,9 +27,10 @@ namespace webAPI.Controllers
 
         // GET: api/Crud
         [HttpGet]
-        public async Task<ActionResult<List<User>>> Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(await _context.Users.ToListAsync());
+            var users = await _context.Users.ToListAsync();
+            return Ok(users);
         }
 
         // GET: api/Crud/5
@@ -46,50 +47,6 @@ namespace webAPI.Controllers
             return user;
         }
 
-        // GET: api/Crud/5
-        [HttpGet("{cin}")]
-        public async Task<ActionResult<User>> GetUserId(int cin)
-        {
-            var user = await _context.Users.FindAsync(cin);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
-        // PUT: api/Crud/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/user
         [HttpPost]
         public async Task<ActionResult<User>> addUser(User user)
@@ -98,6 +55,63 @@ namespace webAPI.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+
+        // POST: api/user/login
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserReqDTO loginReq)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(
+                x => x.email == loginReq.email && x.password == loginReq.password);
+
+            if (user == null)
+            {
+                return Ok(Unauthorized());
+            }
+
+            else if (user.isAccepted == true)
+            {
+                var loginRes = new UserResDTO();
+                loginRes.Id = user.Id;
+                loginRes.lastName = user.lastName;
+                loginRes.firstName = user.firstName;
+                loginRes.email = user.email;
+                loginRes.CIN = user.CIN;
+                loginRes.tel = user.tel;
+                loginRes.address = user.address;
+                loginRes.fax = user.fax;
+                loginRes.webSite = user.webSite;
+                loginRes.isAdmin = user.isAdmin;
+                loginRes.token = GenerateJWT(user);
+
+                return Ok(loginRes);
+            }
+
+            else
+            {
+                return Ok(Unauthorized());
+            }
+        }
+
+        // POST: api/user/acceptInscription
+        [HttpPost("acceptInscription")]
+        public async Task<IActionResult> Login(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            var userAccepted = user;
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                userAccepted.isAccepted = true;
+                _context.Entry(user).CurrentValues.SetValues(userAccepted);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
         }
 
         // DELETE: api/Crud/5
@@ -110,36 +124,19 @@ namespace webAPI.Controllers
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(UserReqDTO loginReq)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(
-                x => x.email == loginReq.email && x.password == loginReq.password);
-            if (user == null)
+            else
             {
-                return Ok(Unauthorized());
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
-
-            var loginRes = new UserResDTO();
-            loginRes.Id = user.Id;
-            loginRes.lastName = user.lastName;
-            loginRes.firstName = user.firstName;
-            loginRes.email = user.email;
-            loginRes.CIN = user.CIN;
-            loginRes.tel = user.tel;
-            loginRes.address = user.address;
-            loginRes.fax = user.fax;
-            loginRes.webSite = user.webSite;
-            loginRes.token = GenerateJWT(user);
-
-            return Ok(loginRes);
+            
         }
+
+
+
+        
 
         private bool UserExists(int id)
         {

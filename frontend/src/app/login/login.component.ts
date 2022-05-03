@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
      x:boolean = true;
 
   ngOnInit() {
+    /*if (this.isUserlogin) {
+      this.router.navigate(["/home"]);
+    }*/
   }
 
   onLogin(UserLoginForm: NgForm){
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.service.login(User).subscribe((data:any) => {
       if (data.statusCode == null)
         {this.x = true;
+          console.log(data);
           localStorage.setItem("userInfo", JSON.stringify(data));
           this.router.navigateByUrl('/home')
         }
@@ -38,5 +42,11 @@ export class LoginComponent implements OnInit {
           console.log("user not found!");}
     });
   }
+
+  /*get isUserlogin() {
+    const user = localStorage.getItem("userInfo");
+    return user && user.length > 0;
+
+}*/
 
 }

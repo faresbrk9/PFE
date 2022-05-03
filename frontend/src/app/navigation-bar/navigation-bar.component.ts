@@ -12,12 +12,11 @@ export class NavigationBarComponent implements OnInit {
   user = JSON.parse(this.getUser);
 
   constructor(private router: Router) {
-    /*if (this.isUserlogin) {
-       this.router.navigate(["/login"]);
-     }*/
+
    }
 
   ngOnInit() {
+
   }
 
   onLogout() {
@@ -28,6 +27,12 @@ export class NavigationBarComponent implements OnInit {
   get isUserlogin() {
     const user = localStorage.getItem("userInfo");
     return user && user.length > 0;
-  }
+}
+
+  get isAdminLogin() {
+  const getUser = localStorage.getItem('userInfo');
+  const user = JSON.parse(getUser);
+  return this.isUserlogin && user.isAdmin;
+}
 
 }

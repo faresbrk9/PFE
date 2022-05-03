@@ -12,10 +12,14 @@ import { User } from '../model/user';
 export class SignInComponent implements OnInit {
 
   userModel = new User('','','','','','','','','');
+  boolVar = false;
   constructor(private service: SignInService,
               private router: Router) {}
 
   ngOnInit(): void {
+    /*if (this.isUserlogin) {
+      this.router.navigate(["/home"]);
+    }*/
   }
 
   onSubmit(userForm: NgForm)
@@ -29,7 +33,9 @@ export class SignInComponent implements OnInit {
       tel:this.userModel.tel,
       address:this.userModel.address,
       fax:this.userModel.fax,
-      webSite:this.userModel.webSite
+      webSite:this.userModel.webSite,
+      isAccepted:this.boolVar,
+      isAdmin:this.boolVar,
     }
 
     this.service.addUser(User).subscribe();
@@ -51,4 +57,10 @@ export class SignInComponent implements OnInit {
     this.userModel.fax = '';
     this.userModel.webSite = '';
   }
+
+  /*get isUserlogin() {
+    const user = localStorage.getItem("userInfo");
+    return user && user.length > 0;
+
+}*/
 }

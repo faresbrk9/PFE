@@ -4,42 +4,70 @@
     <div class="collapse navbar-collapse" id="navbarNav">
 
       <ul class="mr-auto navbar-nav">
+
         <li class="nav-item">
           <a class="navbar-brand" routerLink="/home">
-            <img src="../../assets/open-tunisia.png" width="51px" height="25px"></a>
+            <img src="../../assets/open-tunisia.png" width="51px" height="25px">
+          </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" aria-current="page"
             routerLink="/home" routerLinkActive="active">Home
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
             routerLink="/user-account" routerLinkActive="active">My Account
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isUserlogin"
             routerLink="/show-list" routerLinkActive="active"> All Users
           </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
+            routerLink="/user-management" routerLinkActive="active"> Account Management
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
+            routerLink="/show-list" routerLinkActive="active"> Message Management
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
+            routerLink="/show-list" routerLinkActive="active"> Replies Management
+          </a>
+        </li>
+
       </ul>
 
       <div class="navbar-right">
         <ul class="navbar-nav mr-auto">
+
           <li class="nav-item">
             <a class="nav-link" aria-current="page"
               routerLink="/login" *ngIf="isUserlogin"
               (click)="onLogout()" routerLinkActive="active">Logout</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" aria-current="page" *ngIf="!isUserlogin"
               routerLink="/sign-up" routerLinkActive="active">Register</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" aria-current="page" *ngIf="!isUserlogin"
               routerLink="/login">Login</a>
           </li>
+
         </ul>
       </div>
 

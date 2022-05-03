@@ -43,5 +43,9 @@ namespace webAPI.Models
 
         [Column(TypeName = "nvarchar(255)")]
         public string? webSite { get; set; }
+
+        public bool isAccepted { get; set; }
+
+        public bool isAdmin { get; set; }
     }
 }

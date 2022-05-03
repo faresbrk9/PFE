@@ -11,8 +11,8 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220422062918_openDataBase")]
-    partial class openDataBase
+    [Migration("20220503101045_openDB")]
+    partial class openDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,12 @@ namespace webAPI.Migrations
                     b.Property<string>("firstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("isAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("lastName")
                         .IsRequired()
