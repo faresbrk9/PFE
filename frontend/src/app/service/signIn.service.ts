@@ -7,30 +7,30 @@ import { Observable } from 'rxjs';
 })
 export class SignInService {
 
-readonly url="http://localhost:5025/api/user";
+readonly url1="http://localhost:5025/api/user";
 readonly url2="http://localhost:5025/api/company";
 
 
 constructor(private http: HttpClient) { }
 
 getUsers():Observable<any[]> {
-  return this.http.get<any>(this.url);
+  return this.http.get<any>(this.url1);
 }
 
 addUser(data:any) {
-  return this.http.post(this.url, data);
+  return this.http.post(this.url1, data);
 }
 
-declineUser(id:number|string) {
-  return this.http.delete(this.url + `/${id}`);
+declineUser(id:any) {
+  return this.http.delete(this.url1 + `/${id}`);
 }
 
-acceptUser(id:number|string) {
-  return this.http.post(`${this.url}/acceptInscription`, id);
+acceptUser(id:any) {
+  return this.http.post(`${this.url1}/acceptInscription`, id);
 }
 
 login(data:any) {
-  return this.http.post(`${this.url}/login`, data);
+  return this.http.post(`${this.url1}/login`, data);
 }
 
 getCompanies():Observable<any[]> {

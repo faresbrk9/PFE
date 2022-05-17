@@ -4,8 +4,8 @@
     <th>Prenom</th>
     <th>Email</th>
     <th>CIN</th>
-    <th>trial</th>
-    <th>Actions</th>
+    <th>Visiter le profil</th>
+    <th>Envoyer un message</th>
   </thead>
   <tbody>
     <tr *ngFor="let item of userList$|async">
@@ -13,10 +13,9 @@
       <td>{{item.firstName}}</td>
       <td>{{item.email}}</td>
       <td>{{item.cin}}</td>
-      <td>{{companyList$}}</td>
       <td>
         <button type="delete" class="btn btn-primary" (click)="onDelete(item.id)">
-          Delete
+          Visiter
         </button>
       </td>
 
@@ -30,5 +29,5 @@
   </tbody>
 </table>
 
-<button class="btn btn-primary"
-routerLink="/">Return</button>
+<!--<button class="btn btn-primary"
+routerLink="/">Return</button>-->

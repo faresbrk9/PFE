@@ -49,7 +49,7 @@ namespace webAPI.Controllers
 
         // POST: api/user
         [HttpPost]
-        public async Task<ActionResult<User>> addUser(User user)
+        public async Task<ActionResult<User>> AddUser(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -93,12 +93,11 @@ namespace webAPI.Controllers
             }
         }
 
-        // POST: api/user/acceptInscription
+        // Post: api/user/acceptInscription
         [HttpPost("acceptInscription")]
-        public async Task<IActionResult> Login(int id)
+        public async Task<IActionResult> AcceptInscription(int id)
         {
             var user = await _context.Users.FindAsync(id);
-            var userAccepted = user;
             if (user == null)
             {
                 return NotFound();
@@ -106,6 +105,7 @@ namespace webAPI.Controllers
 
             else
             {
+                var userAccepted = user;
                 userAccepted.isAccepted = true;
                 _context.Entry(user).CurrentValues.SetValues(userAccepted);
                 await _context.SaveChangesAsync();
@@ -131,12 +131,12 @@ namespace webAPI.Controllers
 
                 return Ok();
             }
-            
+
         }
 
 
 
-        
+
 
         private bool UserExists(int id)
         {

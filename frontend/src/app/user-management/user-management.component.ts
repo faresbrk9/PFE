@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SignInService } from '../service/signIn.service';
 
@@ -8,51 +9,50 @@ import { SignInService } from '../service/signIn.service';
 })
 export class UserManagementComponent implements OnInit {
 
-  getUserList = localStorage.getItem('userList');
-  userList = JSON.parse(this.getUserList);
-  waitingUsers = this.unacceptedList();
-  //companyList$ = this.service.getCompanies();
+  constructor(private service: SignInService, private router: Router) { }
 
-  constructor(private service: SignInService) { }
+  waitingUsers:any;
 
   ngOnInit() {
-    //window.location.reload();
     this.service.getUsers().subscribe((data:any) =>
       {
         console.log(data);
         localStorage.setItem("userList", JSON.stringify(data));
     });
-
-      }
-
-
-
-  onDecline(id:number|string){
-    this.service.declineUser(id).subscribe();
-    setTimeout(() => {window.location.reload();
-    }, 100);
-
-  }
-
-  onAccept(id:number|string){
-    this.service.acceptUser(id).subscribe();
-    setTimeout(() => {window.location.reload();
-    },100);
-
-  }
-
-  unacceptedList (){
-
+    let getUserList = localStorage.getItem('userList');
     let arr:any = [];
-    for (var item of this.userList)
+    for (var item of JSON.parse(getUserList))
     {
       if(item.isAccepted == false)
       {
         arr.push(item);
       }
     }
+    console.log(arr);
+    this.waitingList(arr);
 
-    return arr
+      }
+
+
+  onDecline(id:any){
+    let x: number = +id;
+    this.service.declineUser(x).subscribe();
+    /*setTimeout(() => {window.location.reload();
+    }, 100);*/
+
+  }
+
+  onAccept(id:any){
+    let x: number = +id;
+    console.log(x);
+    this.service.acceptUser(x).subscribe();
+    /*setTimeout(() => {window.location.reload();
+    },100);*/
+
+  }
+
+  waitingList(x:any){
+    this.waitingUsers = x;
   }
 
 }

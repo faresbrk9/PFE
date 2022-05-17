@@ -20,5 +20,8 @@ namespace webAPI.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<publicMessage> PublicMessages { get; set; }
+        public DbSet<publicMessageResponse> PublicMessageResponses { get; set; }
+        public DbSet<privateMessage> PrivateMessages { get; set; }
     }
 }

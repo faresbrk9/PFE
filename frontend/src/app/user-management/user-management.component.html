@@ -3,32 +3,35 @@
 <br>
 <table class="table table-striped">
   <thead>
+    <th>ID</th>
     <th>Nom</th>
     <th>Prenom</th>
-    <th>Email</th>
+    <th>E-mail</th>
     <th>CIN</th>
-    <th>trial</th>
-    <th>Actions</th>
+    <th>Accepter</th>
+    <th>Refuser</th>
   </thead>
   <tbody>
     <tr *ngFor="let item of waitingUsers">
-
+        <td>{{item.id}}</td>
         <td>{{item.lastName}}</td>
         <td>{{item.firstName}}</td>
         <td>{{item.email}}</td>
         <td>{{item.cin}}</td>
         <td>
-          <button type="delete" class="btn btn-primary" (click)="onAccept(item.id)">
+          <button type="button"
+                  class="btn btn-primary"
+                  (click)="onAccept(item.id)">
             Accepter
           </button>
         </td>
-
         <td>
-          <button type="button" class="btn btn-primary" (click)="onDecline(item.id)">
+          <button type="button"
+                  class="btn btn-primary"
+                  (click)="onDecline(item.id)">
             Refuser
           </button>
         </td>
-
     </tr>
   </tbody>
 </table>

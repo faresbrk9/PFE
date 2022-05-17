@@ -14,14 +14,16 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HomeComponent } from './home/home.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { PublicMessagesComponent } from './public-messages/public-messages.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
-  {path: 'user-account', component: UserAccountComponent},
+  {path: 'user-account',component: UserAccountComponent},
   {path: 'show-list',component: ShowUserListComponent},
   {path: 'sign-up',component: SignInComponent},
-  {path: 'login', component: LoginComponent},
-  {path : 'user-management', component: UserManagementComponent},
+  {path: 'login',component: LoginComponent},
+  {path: 'user-management',component: UserManagementComponent},
+  {path: 'public-messages',component: PublicMessagesComponent},
   {path: '',component: HomeComponent}
 ]
 
@@ -30,11 +32,12 @@ const appRoutes: Routes = [
     AppComponent,
     SignInComponent,
     ShowUserListComponent,
-      LoginComponent,
-      NavigationBarComponent,
-      UserAccountComponent,
-      HomeComponent,
-      UserManagementComponent
+    LoginComponent,
+    NavigationBarComponent,
+    UserAccountComponent,
+    HomeComponent,
+    UserManagementComponent,
+    PublicMessagesComponent
    ],
   imports: [
     BrowserModule,
