@@ -15,10 +15,12 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { HomeComponent } from './home/home.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { PublicMessagesComponent } from './public-messages/public-messages.component';
+import { UserInfoUpdateComponent } from './user-info-update/user-info-update.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
   {path: 'user-account',component: UserAccountComponent},
+  {path: 'user-info-update',component: UserInfoUpdateComponent},
   {path: 'show-list',component: ShowUserListComponent},
   {path: 'sign-up',component: SignInComponent},
   {path: 'login',component: LoginComponent},
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     UserAccountComponent,
     HomeComponent,
     UserManagementComponent,
-    PublicMessagesComponent
+    PublicMessagesComponent,
+      UserInfoUpdateComponent
    ],
   imports: [
     BrowserModule,

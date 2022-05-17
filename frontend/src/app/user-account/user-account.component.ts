@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company } from '../model/company';
+import { User } from '../model/user';
 import { SignInService } from '../service/signIn.service';
 
 @Component({
@@ -10,10 +11,11 @@ import { SignInService } from '../service/signIn.service';
 })
 export class UserAccountComponent implements OnInit {
 
+  x = false;
   getUser = localStorage.getItem('userInfo');
   user = JSON.parse(this.getUser);
+
   companyInfo = new Company('','','','','','','','','','','','','','')
-  x = false;
   getCompany = localStorage.getItem('companyInfo');
   company = JSON.parse(this.getCompany);
 

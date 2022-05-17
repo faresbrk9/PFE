@@ -1,0 +1,142 @@
+<form #userform="ngForm">
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Nom</label>
+    <input
+      type="text"
+      class="form-control"
+      name="lastName"
+      required
+      minlength="1"
+      [(ngModel)]="user.lastName"
+      #nom="ngModel"
+    />
+    <span class="error-block" *ngIf="!nom.valid && nom.touched">
+      Champ obligatoire</span>
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Prenom</label>
+    <input
+      type="text"
+      class="form-control"
+      name="firstName"
+      [(ngModel)]="user.firstName"
+      #prenom="ngModel"
+      required
+      minlength="1"
+    />
+    <span class="error-block" *ngIf="!prenom.valid && prenom.touched">
+      Champ obligatoire</span>
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">E-mail</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="user.email"
+      #email="ngModel"
+      required
+      email
+      minlength="3"
+    />
+    <span class="error-block" *ngIf="!email.valid && email.touched">
+      Champ obligatoire</span>
+  </div>
+
+  <!--<div class="form-group col-12">
+    <label for="name" class="form-label">Mot de passe</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="user.password"
+      #mdp="ngModel"
+      required
+      minlength="8"
+    />
+    <span class="error-block" *ngIf="!mdp.valid && mdp.touched">
+      Champ obligatoire</span>
+  </div>-->
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">CIN</label>
+    <input
+      type="text"
+      class="form-control"
+      name="CIN"
+      [(ngModel)]="user.cin"
+      #CIN="ngModel"
+      required
+      maxLength="8"
+      minlength="8"
+      pattern="[0-9]*"
+    />
+    <span class="error-block" *ngIf="!CIN.valid && CIN.touched">
+      Champ obligatoire</span>
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Tel</label>
+    <input
+      type="tel"
+      class="form-control"
+      name="tel"
+      [(ngModel)]="user.tel"
+      #tel="ngModel"
+      required
+      maxLength="8"
+      minlength="8"
+      pattern="[0-9]*"
+    />
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Addresse</label>
+    <input
+      type="text"
+      class="form-control"
+      name="address"
+      [(ngModel)]="user.address"
+    />
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Fax</label>
+    <input
+      type="text"
+      class="form-control"
+      name="fax"
+      [(ngModel)]="user.fax"
+    />
+  </div>
+
+  <br />
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Site Web</label>
+    <input
+      type="text"
+      class="form-control"
+      name="webSite"
+      [(ngModel)]="user.webSite"
+    />
+  </div>
+
+  <br />
+
+  <div class="form-group col-12">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!userform.valid"
+    >
+      Finaliser
+    </button>
+
+    <button type="button" class="btn btn-secondary">
+      Annuler
+    </button>
+  </div>
+</form>

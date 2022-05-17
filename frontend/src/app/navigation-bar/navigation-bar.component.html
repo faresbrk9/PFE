@@ -13,43 +13,43 @@
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page"
-            routerLink="/home" routerLinkActive="active">Home
+            routerLink="/home" routerLinkActive="active">Accueil
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/public-messages" routerLinkActive="active">Messages Publics
+            routerLink="/public-messages" routerLinkActive="active">Messages publics
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/user-account" routerLinkActive="active">My Account
+            routerLink="/user-account" routerLinkActive="active">Mon profil
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isUserlogin"
-            routerLink="/show-list" routerLinkActive="active"> All Users
+            routerLink="/show-list" routerLinkActive="active">Utilisateurs
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/user-management" routerLinkActive="active"> Account Management
+            routerLink="/user-management" routerLinkActive="active">Gestion d'utilisateurs
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/home" routerLinkActive="active"> Message Management
+            routerLink="/home" routerLinkActive="active">Gestion de message
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/home" routerLinkActive="active"> Replies Management
+            routerLink="/home" routerLinkActive="active">Gestion de réponses
           </a>
         </li>
 
@@ -61,17 +61,17 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page"
               routerLink="/login" *ngIf="isUserlogin"
-              (click)="onLogout()" routerLinkActive="active">Logout</a>
+              (click)="onLogout()" routerLinkActive="active">Se deconnecter</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" aria-current="page" *ngIf="!isUserlogin"
-              routerLink="/sign-up" routerLinkActive="active">Register</a>
+              routerLink="/sign-up" routerLinkActive="active">S'inscrire</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" aria-current="page" *ngIf="!isUserlogin"
-              routerLink="/login">Login</a>
+              routerLink="/login">Se connecter</a>
           </li>
 
         </ul>
