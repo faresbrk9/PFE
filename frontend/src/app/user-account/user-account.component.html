@@ -1,20 +1,27 @@
 <!--<img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.png">
         <img *ngIf="!property.Image" class="card-img-top" src="assets/images/house_default.png">-->
 
-
-
 <div class="row shadow">
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img class="card-img-top" src="../../assets/open-tunisia.png" height="400px">
+        <img
+          class="card-img-top"
+          src="../../assets/profile-pic.png"
+          height="375px"
+        />
       </div>
       <div class="card-body">
-        <h1 class="card-title" style="text-align: center;">{{user.lastName}} {{user.firstName}}</h1>
+        <h1 class="card-title" style="text-align: center">
+          {{ user.lastName }} {{ user.firstName }}
+        </h1>
       </div>
-      <br>
-      <button type="button" class="btn btn-success">
+      <button type="button" class="btn btn-success" (click)="onAdd()">
         Ajouter une entreprise
+      </button>
+
+      <button type="button" class="btn btn-danger" style="margin-top: 10px;" (click)="onDelete()">
+        Supprimer mon compte
       </button>
     </div>
   </div>
@@ -22,128 +29,146 @@
     <div class="tab-panel p-3">
       <tabset class="member-tabset">
         <tab heading="Profil">
-          <h1>Profil</h1>
+          <br>
           <div class="row">
-              <div class="col-sm-6">
-                  <div class="heading">
-                      <strong>Prénom:</strong>
-                      <p>{{user.lastName}}</p>
-                  </div>
-
-                  <div class="heading">
-                      <strong>Nom:</strong>
-                      <p>{{user.firstName}}</p>
-                  </div>
-
-                  <div class="heading">
-                      <strong>CIN:</strong>
-                      <p>{{user.cin}}</p>
-                  </div>
-
-                  <div class="heading">
-                      <strong>Email:</strong>
-                      <p>{{user.email}}</p>
-                  </div>
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Prénom:</strong>
+                <p>{{ user.lastName }}</p>
               </div>
 
-              <div class="col-sm-6">
-                  <div class="heading">
-                      <strong>Tel:</strong>
-                      <p>{{user.tel}}</p>
-                  </div>
+              <div class="heading">
+                <strong>Nom:</strong>
+                <p>{{ user.firstName }}</p>
+              </div>
 
-                  <div class="heading">
-                      <strong>Addresse:</strong>
-                      <p>{{user.address}}</p>
-                  </div>
+              <div class="heading">
+                <strong>CIN:</strong>
+                <p>{{ user.cin }}</p>
+              </div>
 
-                  <div class="heading">
-                      <strong>Site Web:</strong>
-                      <p>{{user.webSite}}</p>
-                  </div>
-                  <div class="heading">
-                      <strong>Fax</strong>
-                      <p>{{user.fax}}</p>
-                  </div>
-                  <br>
-                  <button type="button" class="btn btn-primary" routerLink="/user-info-update">
-                    Editer
-                  </button>
+              <div class="heading">
+                <strong>Email:</strong>
+                <p>{{ user.email }}</p>
               </div>
             </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Tel:</strong>
+                <p>{{ user.tel }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Addresse:</strong>
+                <p>{{ user.address }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Site Web:</strong>
+                <p>{{ user.webSite }}</p>
+              </div>
+              <div class="heading">
+                <strong>Fax</strong>
+                <p>{{ user.fax }}</p>
+              </div>
+              <br />
+              <button
+                type="button"
+                class="btn btn-primary"
+                routerLink="/user-info-update">
+                Editer
+              </button>
+            </div>
+          </div>
         </tab>
 
-        <tab heading="Sociétés">
-          <h1>Société</h1>
+        <tab heading="Sociétés" *ngIf="x">
+          <br>
           <div class="row">
-              <div class="col-sm-6">
-                  <div class="heading">
-                    <strong>Raison Sociale:</strong>
-                    <p>{{company[0].raisonSociale}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Capitale Sociale:</strong>
-                    <p>{{company[0].capitalSociale}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Siège Sociale:</strong>
-                    <p>{{company[0].siegeSociale}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Forme Juridique:</strong>
-                    <p>{{company[0].formeJuridique}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Matricule Fiscal:</strong>
-                    <p>{{company[0].matriculeFiscal}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>RNE:</strong>
-                    <p>{{company[0].rne}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Secteur Activité:</strong>
-                    <p>{{company[0].secteurActivite}}</p>
-                  </div>
-                </div>
-
-                <div class="col-sm-6">
-                  <div class="heading">
-                    <strong>Produits:</strong>
-                    <p>{{company[0].produits}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Nombre d'employées:</strong>
-                    <p>{{company[0].nbreEmployes}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Tel:</strong>
-                    <p>{{company[0].tel}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Fax:</strong>
-                    <p>{{company[0].fax}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>E-mail:</strong>
-                    <p>{{company[0].email}}</p>
-                  </div>
-
-                  <div class="heading">
-                    <strong>Site Web:</strong>
-                    <p>{{company[0].webSite}}</p>
-                  </div>
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Raison Sociale:</strong>
+                <p>{{ company[companyIndex].raisonSociale }}</p>
               </div>
+
+              <div class="heading">
+                <strong>Capitale Sociale:</strong>
+                <p>{{ company[companyIndex].capitalSociale }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Siège Sociale:</strong>
+                <p>{{ company[companyIndex].siegeSociale }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Forme Juridique:</strong>
+                <p>{{ company[companyIndex].formeJuridique }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Matricule Fiscal:</strong>
+                <p>{{ company[companyIndex].matriculFiscal }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>RNE:</strong>
+                <p>{{ company[companyIndex].rne }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Secteur Activité:</strong>
+                <p>{{ company[companyIndex].secteurActivite }}</p>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="heading">
+                <strong>Produits:</strong>
+                <p>{{ company[companyIndex].produits }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Nombre d'employées:</strong>
+                <p>{{ company[companyIndex].nbreEmployes }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Tel:</strong>
+                <p>{{ company[companyIndex].tel }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Fax:</strong>
+                <p>{{ company[companyIndex].fax }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>E-mail:</strong>
+                <p>{{ company[companyIndex].email }}</p>
+              </div>
+
+              <div class="heading">
+                <strong>Site Web:</strong>
+                <p>{{ company[companyIndex].webSite }}</p>
+              </div>
+
+              <br>
+
+              <button type="button" class="btn btn-primary" (click)="onPrevious()" style="margin-right: 10px;">
+                Précédente
+              </button>
+
+              <button type="button" class="btn btn-primary" (click)="onNext()" style="margin-right: 10px;">
+                Suivante
+              </button>
+
+              <button type="button" class="btn btn-primary" (click)="onEdit()">
+                Editer
+              </button>
+
+            </div>
           </div>
         </tab>
       </tabset>

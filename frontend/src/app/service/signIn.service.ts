@@ -33,6 +33,10 @@ login(data:any) {
   return this.http.post(`${this.url1}/login`, data);
 }
 
+editUser(data:any) {
+  return this.http.post(`${this.url1}/editUser`, data);
+}
+
 getCompanies():Observable<any[]> {
   return this.http.get<any>(this.url2);
 }
@@ -42,7 +46,11 @@ getCompanyByOwner(ownerId:number|string):Observable<any[]> {
 }
 
 addCompany(data:any) {
-  return this.http.post(this.url2, data);
+  return this.http.post(`${this.url2}/addCompany`, data);
+}
+
+editCompany(data:any) {
+  return this.http.post(`${this.url2}/editCompany`, data);
 }
 
 }

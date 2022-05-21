@@ -134,6 +134,41 @@ namespace webAPI.Controllers
 
         }
 
+        [HttpPost("editUser")]
+        public async Task<IActionResult> editUser(User user)
+        {
+            var use = await _context.Users.FindAsync(user.Id);
+            var userEdited = use;
+
+            userEdited.lastName = user.lastName;
+            userEdited.firstName = user.firstName;
+            userEdited.email = user.email;
+            userEdited.CIN = user.CIN;
+            userEdited.tel = user.tel;
+            userEdited.address = user.address;
+            userEdited.fax = user.fax;
+            userEdited.webSite = user.webSite;
+
+            _context.Entry(use).CurrentValues.SetValues(userEdited);
+            await _context.SaveChangesAsync();
+
+            var userLog = await _context.Users.FindAsync(user.Id);
+            var loginRes = new UserResDTO();
+            loginRes.Id = userLog.Id;
+            loginRes.lastName = userLog.lastName;
+            loginRes.firstName = userLog.firstName;
+            loginRes.email = userLog.email;
+            loginRes.CIN = userLog.CIN;
+            loginRes.tel = userLog.tel;
+            loginRes.address = userLog.address;
+            loginRes.fax = userLog.fax;
+            loginRes.webSite = userLog.webSite;
+            loginRes.isAdmin = userLog.isAdmin;
+            loginRes.token = GenerateJWT(userLog);
+
+            return Ok(loginRes);
+        }
+
 
 
 

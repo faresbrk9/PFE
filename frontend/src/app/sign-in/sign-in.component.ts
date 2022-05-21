@@ -13,6 +13,7 @@ export class SignInComponent implements OnInit {
 
   userModel = new User('','','','','','','','','');
   boolVar = false;
+  boulVariable = true;
   constructor(private service: SignInService,
               private router: Router) {}
 
@@ -34,7 +35,7 @@ export class SignInComponent implements OnInit {
       address:this.userModel.address,
       fax:this.userModel.fax,
       webSite:this.userModel.webSite,
-      isAccepted:this.boolVar,
+      isAccepted:this.boulVariable,
       isAdmin:this.boolVar,
     }
 

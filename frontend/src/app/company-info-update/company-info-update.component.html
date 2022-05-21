@@ -1,0 +1,92 @@
+<form #userform="ngForm">
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Raison Sociale</label>
+    <input type="text" class="form-control" name="raisonSociale"
+      #raisonSociale="ngModel" [(ngModel)]="companyInfo.raisonSociale">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Capital Sociale</label>
+    <input type="text" class="form-control" name="capitalSociale"
+      #capitaleSociale="ngModel" [(ngModel)]="companyInfo.capitalSociale">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Siège Sociale</label>
+    <input type="text" class="form-control" name="siegeSociale"
+      #siegeSociale="ngModel" [(ngModel)]="companyInfo.siegeSociale">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Forme Juridique</label>
+    <input type="text" class="form-control" name="formeJuridique"
+      #formeJuridique="ngModel" [(ngModel)]="companyInfo.formeJuridique">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Matricule Fiscal</label>
+    <input type="text" class="form-control" name="matriculeFiscal"
+      #matriculeFiscal="ngModel" [(ngModel)]="companyInfo.matriculeFiscal">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">RNE</label>
+    <input type="text" class="form-control" name="RNE"
+    #RNE="ngModel" [(ngModel)]="companyInfo.RNE">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Secteur d'activité</label>
+    <input type="text" class="form-control" name="secteurActivite"
+      #secteurActivite="ngModel" [(ngModel)]="companyInfo.secteurActivite">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Produits</label>
+    <input type="text" class="form-control" name="produits"
+      #produits="ngModel" [(ngModel)]="companyInfo.produits">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Nombre d'employées</label>
+    <input type="text" class="form-control" name="nbreEmployes"
+      #nbreEmployes="ngModel" [(ngModel)]="companyInfo.nbreEmployes">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Tel</label>
+    <input type="text" class="form-control" name="cTel"
+      #cTel="ngModel" [(ngModel)]="companyInfo.tel">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">E-mail</label>
+    <input type="text" class="form-control" name="cEmail"
+      #cEmail="ngModel" [(ngModel)]="companyInfo.email"
+      email>
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Fax</label>
+    <input type="text" class="form-control" name="cFax"
+      #cFax="ngModel" [(ngModel)]="companyInfo.fax">
+  </div>
+
+  <div class="form-group col-12">
+    <label for="name" class="form-label">Site Web</label>
+    <input type="text" class="form-control" name="cWebSite"
+      #cWebSite="ngModel" [(ngModel)]="companyInfo.webSite">
+  </div>
+
+  <br>
+
+  <div class="form-group col-12">
+    <button
+      type="submit"
+      class="btn btn-primary" (click)="onEdit()">
+      Finaliser
+    </button>
+  </div>
+
+</form>

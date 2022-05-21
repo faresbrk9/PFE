@@ -94,29 +94,39 @@ namespace webAPI.Controllers
 
 
         // POST: api/Company
-        [HttpPost]
-        public async Task<ActionResult<Company>> addCompany(Company company)
+        [HttpPost("addCompany")]
+        public async Task<IActionResult> addCompany(Company company)
         {
-            var com = new Company();
-            com.raisonSociale = company.raisonSociale;
-            com.capitalSociale = company.capitalSociale;
-            com.siegeSociale = company.siegeSociale;
-            com.formeJuridique = company.formeJuridique;
-            com.matriculFiscal = company.matriculFiscal;
-            com.RNE = company.RNE;
-            com.secteurActivite = company.secteurActivite;
-            com.produits = company.produits;
-            com.nbreEmployes = company.nbreEmployes;
-            com.tel = company.tel;
-            com.email = company.email;
-            com.fax = company.fax;
-            com.webSite = company.webSite;
-            com.UserId  = company.UserId;
-            
-            _context.Companies.Add(com);
+            _context.Companies.Add(company);
             await _context.SaveChangesAsync();
 
-            return StatusCode(201);
+            return Ok();
+        }
+
+        // POST: api/Company
+        [HttpPost("editCompany")]
+        public async Task<IActionResult> editCompany(Company company)
+        {
+            var com = await _context.Companies.FindAsync(company.Id);
+            var companyEdited = com;
+
+            companyEdited.raisonSociale = company.raisonSociale;
+            companyEdited.capitalSociale = company.capitalSociale;
+            companyEdited.siegeSociale = company.siegeSociale;
+            companyEdited.formeJuridique = company.formeJuridique;
+            companyEdited.matriculFiscal = company.matriculFiscal;
+            companyEdited.RNE = company.RNE;
+            companyEdited.secteurActivite = company.secteurActivite;
+            companyEdited.produits = company.produits;
+            companyEdited.nbreEmployes = company.nbreEmployes;
+            companyEdited.tel = company.tel;
+            companyEdited.email = company.email;
+            companyEdited.fax = company.fax;
+            companyEdited.webSite = company.webSite;
+
+            _context.Entry(com).CurrentValues.SetValues(companyEdited);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
     }
 }

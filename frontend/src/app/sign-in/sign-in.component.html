@@ -118,8 +118,6 @@
             />
           </div>
 
-          <br />
-
           <div class="form-group col-12">
             <label for="name" class="form-label">Site Web</label>
             <input
@@ -130,17 +128,15 @@
             />
           </div>
 
-          <br />
+          <br>
 
           <div class="form-group col-12">
             <button
               type="submit"
               class="btn btn-primary"
-              [disabled]="!userform.valid"
-            >
+              [disabled]="!userform.valid">
               Finaliser
             </button>
-
             <button type="reset" class="btn btn-secondary" (click)="onReset()">
               Réinitialiser
             </button>

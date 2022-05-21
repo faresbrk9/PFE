@@ -33,9 +33,8 @@ export class LoginComponent implements OnInit {
     this.service.login(User).subscribe((data:any) => {
       if (data.statusCode == null)
         {this.x = true;
-          console.log(data);
           localStorage.setItem("userInfo", JSON.stringify(data));
-          this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/home');
         }
       else
         {this.x = false;

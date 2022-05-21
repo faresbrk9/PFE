@@ -7,7 +7,7 @@
       name="lastName"
       required
       minlength="1"
-      [(ngModel)]="user.lastName"
+      [(ngModel)]="userInfo.lastName"
       #nom="ngModel"
     />
     <span class="error-block" *ngIf="!nom.valid && nom.touched">
@@ -20,7 +20,7 @@
       type="text"
       class="form-control"
       name="firstName"
-      [(ngModel)]="user.firstName"
+      [(ngModel)]="userInfo.firstName"
       #prenom="ngModel"
       required
       minlength="1"
@@ -35,7 +35,7 @@
       type="email"
       class="form-control"
       name="email"
-      [(ngModel)]="user.email"
+      [(ngModel)]="userInfo.email"
       #email="ngModel"
       required
       email
@@ -51,7 +51,7 @@
       type="password"
       class="form-control"
       name="password"
-      [(ngModel)]="user.password"
+      [(ngModel)]="userInfo.password"
       #mdp="ngModel"
       required
       minlength="8"
@@ -66,7 +66,7 @@
       type="text"
       class="form-control"
       name="CIN"
-      [(ngModel)]="user.cin"
+      [(ngModel)]="userInfo.CIN"
       #CIN="ngModel"
       required
       maxLength="8"
@@ -83,7 +83,7 @@
       type="tel"
       class="form-control"
       name="tel"
-      [(ngModel)]="user.tel"
+      [(ngModel)]="userInfo.tel"
       #tel="ngModel"
       required
       maxLength="8"
@@ -98,7 +98,7 @@
       type="text"
       class="form-control"
       name="address"
-      [(ngModel)]="user.address"
+      [(ngModel)]="userInfo.address"
     />
   </div>
 
@@ -108,7 +108,7 @@
       type="text"
       class="form-control"
       name="fax"
-      [(ngModel)]="user.fax"
+      [(ngModel)]="userInfo.fax"
     />
   </div>
 
@@ -120,23 +120,20 @@
       type="text"
       class="form-control"
       name="webSite"
-      [(ngModel)]="user.webSite"
+      [(ngModel)]="userInfo.webSite"
     />
   </div>
 
-  <br />
+  <br>
 
   <div class="form-group col-12">
     <button
       type="submit"
       class="btn btn-primary"
       [disabled]="!userform.valid"
+      (click)="onEdit()"
     >
       Finaliser
-    </button>
-
-    <button type="button" class="btn btn-secondary">
-      Annuler
     </button>
   </div>
 </form>
