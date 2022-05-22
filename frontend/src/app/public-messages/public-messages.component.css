@@ -2,6 +2,17 @@
 
 }
 
+.sendResponseInput{
+}
+
+.responseList {
+  margin-top: 35px;
+}
+
+.separatingLine {
+  width: 1120px;
+}
+
 .inputMessage {
   /*padding:25px;
   margin-bottom: 25px;*/
@@ -42,12 +53,12 @@
   background-color: #E0FFFF;
   margin-left: -50px;
   margin-right: -50px;
-  margin-bottom: -15px;
+  margin-bottom: 35px;
 }
 
 .notMyMsgBlock {
   background-color: white;
   margin-left: -50px;
   margin-right: -50px;
-  margin-bottom: -15px;
+  margin-bottom: 35px;
 }

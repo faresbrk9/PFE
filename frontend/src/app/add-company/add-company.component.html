@@ -75,7 +75,8 @@
   <div class="form-group col-12">
     <label for="name" class="form-label">Tel</label>
     <input type="text" class="form-control" name="cTel"
-      #cTel="ngModel" [(ngModel)]="companyInfo.tel" required>
+      #cTel="ngModel" [(ngModel)]="companyInfo.tel" required
+      maxLength="8" minlength="8" pattern="[0-9]*">
       <span class="error-block" *ngIf="!cTel.valid && cTel.touched">
         Champ obligatoire</span>
   </div>

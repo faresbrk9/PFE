@@ -13,10 +13,11 @@ namespace webAPI.Models
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(2048)")]
         public string content { get; set; }
 
         public DateTime? sendingDate { get; set; }
+        public bool isRead { get; set; }
 
         [ForeignKey("senderId")]
         public int? senderId { get; set; }

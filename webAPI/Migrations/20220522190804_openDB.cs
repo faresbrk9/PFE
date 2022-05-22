@@ -15,15 +15,15 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    lastName = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    firstName = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    lastName = table.Column<string>(type: "nvarchar(256)", nullable: false),
+                    firstName = table.Column<string>(type: "nvarchar(256)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(256)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     CIN = table.Column<string>(type: "nvarchar(8)", nullable: false),
-                    tel = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    address = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    fax = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    webSite = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    tel = table.Column<string>(type: "nvarchar(8)", nullable: true),
+                    address = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    fax = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    webSite = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     isAccepted = table.Column<bool>(type: "bit", nullable: false),
                     isBlocked = table.Column<bool>(type: "bit", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false)
@@ -39,19 +39,19 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    raisonSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    capitalSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    siegeSociale = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    formeJuridique = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    matriculFiscal = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    RNE = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    secteurActivite = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    produits = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    nbreEmployes = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    tel = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    email = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    fax = table.Column<string>(type: "nvarchar(255)", nullable: true),
-                    webSite = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    raisonSociale = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    capitalSociale = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    siegeSociale = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    formeJuridique = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    matriculFiscal = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    RNE = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    secteurActivite = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    produits = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    nbreEmployes = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    tel = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    email = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    fax = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    webSite = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -71,8 +71,9 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    content = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isRead = table.Column<bool>(type: "bit", nullable: false),
                     senderId = table.Column<int>(type: "int", nullable: true),
                     receiverId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -97,8 +98,8 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    content = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    publishedBy = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
+                    publishedBy = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isPublished = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -120,9 +121,11 @@ namespace webAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    content = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
+                    publishedBy = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isPublished = table.Column<bool>(type: "bit", nullable: false),
+                    isRead = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     publicMessageId = table.Column<int>(type: "int", nullable: true)
                 },

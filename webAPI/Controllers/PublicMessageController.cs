@@ -19,12 +19,20 @@ namespace webAPI.Controllers
             _context = context;
         }
 
-        // GET: api/publicMessage
-        [HttpGet]
-        public async Task<ActionResult<List<publicMessage>>> Get()
+        // GET: api/publicMessage/publishedMessages
+        [HttpGet("publishedMessages")]
+        public async Task<ActionResult<List<publicMessage>>> GetPublished()
         {
             return Ok(await _context.PublicMessages
             .Where(x => x.isPublished == true).ToListAsync());
+        }
+
+        // GET: api/publicMessage/unpublishedMessages
+        [HttpGet("unpublishedMessages")]
+        public async Task<ActionResult<List<publicMessage>>> GetUnpublished()
+        {
+            return Ok(await _context.PublicMessages
+            .Where(x => x.isPublished == false).ToListAsync());
         }
 
         // GET: api/publicMessage/5

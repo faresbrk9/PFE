@@ -11,43 +11,43 @@ namespace webAPI.Models
     {
         public int Id { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? raisonSociale { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? capitalSociale { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? siegeSociale { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? formeJuridique { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? matriculFiscal { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? RNE { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? secteurActivite { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? produits { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? nbreEmployes { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? tel { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? email { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? fax { get; set; }
 
-        [Column(TypeName = "nvarchar(255)")]
+        [Column(TypeName = "nvarchar(256)")]
         public string? webSite { get; set; }
 
         [ForeignKey("ownerId")]

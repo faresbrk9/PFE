@@ -12,7 +12,7 @@ readonly url="http://localhost:5025/api/publicMessage";
 constructor(private http: HttpClient) { }
 
 getPublishedMessages():Observable<any[]> {
-  return this.http.get<any>(this.url);
+  return this.http.get<any>(`${this.url}/publishedMessages`);
 }
 
 sendPublicMessage(data:any) {

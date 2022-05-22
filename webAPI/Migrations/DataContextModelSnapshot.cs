@@ -31,46 +31,46 @@ namespace webAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("RNE")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("capitalSociale")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("email")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("fax")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("formeJuridique")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("matriculFiscal")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("nbreEmployes")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("produits")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("raisonSociale")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("secteurActivite")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("siegeSociale")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("tel")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("webSite")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -89,7 +89,10 @@ namespace webAPI.Migrations
 
                     b.Property<string>("content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<bool>("isRead")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("receiverId")
                         .HasColumnType("int");
@@ -122,14 +125,14 @@ namespace webAPI.Migrations
 
                     b.Property<string>("content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<bool>("isPublished")
                         .HasColumnType("bit");
 
                     b.Property<string>("publishedBy")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
@@ -154,13 +157,20 @@ namespace webAPI.Migrations
 
                     b.Property<string>("content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<bool>("isPublished")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isRead")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("publicMessageId")
                         .HasColumnType("int");
+
+                    b.Property<string>("publishedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
@@ -187,18 +197,18 @@ namespace webAPI.Migrations
                         .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("address")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("fax")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("firstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("isAccepted")
                         .HasColumnType("bit");
@@ -211,17 +221,17 @@ namespace webAPI.Migrations
 
                     b.Property<string>("lastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("tel")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("webSite")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
