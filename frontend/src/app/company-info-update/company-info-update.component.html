@@ -1,92 +1,127 @@
-<form #userform="ngForm">
+<form #companyform="ngForm">
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Raison Sociale</label>
     <input type="text" class="form-control" name="raisonSociale"
-      #raisonSociale="ngModel" [(ngModel)]="companyInfo.raisonSociale">
+      #raisonSociale="ngModel" [(ngModel)]="companyInfo.raisonSociale" required>
+      <span class="error-block" *ngIf="!raisonSociale.valid && raisonSociale.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Capital Sociale</label>
     <input type="text" class="form-control" name="capitalSociale"
-      #capitaleSociale="ngModel" [(ngModel)]="companyInfo.capitalSociale">
+      #capitaleSociale="ngModel" [(ngModel)]="companyInfo.capitalSociale" required>
+      <span class="error-block" *ngIf="!capitaleSociale.valid && capitaleSociale.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Siège Sociale</label>
     <input type="text" class="form-control" name="siegeSociale"
-      #siegeSociale="ngModel" [(ngModel)]="companyInfo.siegeSociale">
+      #siegeSociale="ngModel" [(ngModel)]="companyInfo.siegeSociale" required>
+      <span class="error-block" *ngIf="!siegeSociale.valid && siegeSociale.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Forme Juridique</label>
     <input type="text" class="form-control" name="formeJuridique"
-      #formeJuridique="ngModel" [(ngModel)]="companyInfo.formeJuridique">
+      #formeJuridique="ngModel" [(ngModel)]="companyInfo.formeJuridique" required>
+      <span class="error-block" *ngIf="!formeJuridique.valid && formeJuridique.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Matricule Fiscal</label>
     <input type="text" class="form-control" name="matriculeFiscal"
-      #matriculeFiscal="ngModel" [(ngModel)]="companyInfo.matriculeFiscal">
+      #matriculeFiscal="ngModel" [(ngModel)]="companyInfo.matriculeFiscal" required>
+      <span class="error-block" *ngIf="!matriculeFiscal.valid && matriculeFiscal.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">RNE</label>
     <input type="text" class="form-control" name="RNE"
-    #RNE="ngModel" [(ngModel)]="companyInfo.RNE">
+    #RNE="ngModel" [(ngModel)]="companyInfo.RNE" required>
+    <span class="error-block" *ngIf="!RNE.valid && RNE.touched">
+      Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Secteur d'activité</label>
     <input type="text" class="form-control" name="secteurActivite"
-      #secteurActivite="ngModel" [(ngModel)]="companyInfo.secteurActivite">
+      #secteurActivite="ngModel" [(ngModel)]="companyInfo.secteurActivite" required>
+      <span class="error-block" *ngIf="!secteurActivite.valid && secteurActivite.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Produits</label>
     <input type="text" class="form-control" name="produits"
-      #produits="ngModel" [(ngModel)]="companyInfo.produits">
+      #produits="ngModel" [(ngModel)]="companyInfo.produits" required>
+      <span class="error-block" *ngIf="!produits.valid && produits.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Nombre d'employées</label>
     <input type="text" class="form-control" name="nbreEmployes"
-      #nbreEmployes="ngModel" [(ngModel)]="companyInfo.nbreEmployes">
+      #nbreEmployes="ngModel" [(ngModel)]="companyInfo.nbreEmployes" required>
+      <span class="error-block" *ngIf="!nbreEmployes.valid && nbreEmployes.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Tel</label>
     <input type="text" class="form-control" name="cTel"
-      #cTel="ngModel" [(ngModel)]="companyInfo.tel">
+      #cTel="ngModel" [(ngModel)]="companyInfo.tel" required>
+      <span class="error-block" *ngIf="!cTel.valid && cTel.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">E-mail</label>
     <input type="text" class="form-control" name="cEmail"
       #cEmail="ngModel" [(ngModel)]="companyInfo.email"
-      email>
+      email required>
+      <span class="error-block" *ngIf="!cEmail.valid && cEmail.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Fax</label>
     <input type="text" class="form-control" name="cFax"
-      #cFax="ngModel" [(ngModel)]="companyInfo.fax">
+      #cFax="ngModel" [(ngModel)]="companyInfo.fax" required>
+      <span class="error-block" *ngIf="!cFax.valid && cFax.touched">
+        Champ obligatoire</span>
   </div>
 
   <div class="form-group col-12">
     <label for="name" class="form-label">Site Web</label>
     <input type="text" class="form-control" name="cWebSite"
-      #cWebSite="ngModel" [(ngModel)]="companyInfo.webSite">
+      #cWebSite="ngModel" [(ngModel)]="companyInfo.webSite" required>
+      <span class="error-block" *ngIf="!cWebSite.valid && cWebSite.touched">
+        Champ obligatoire</span>
   </div>
 
   <br>
 
   <div class="form-group col-12">
     <button
-      type="submit"
+      type="submit" [disabled]="!companyform.valid"
       class="btn btn-primary" (click)="onEdit()">
       Finaliser
     </button>
+
+    <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()"
+      >
+        Annuler
+    </button>
+
   </div>
 
 </form>

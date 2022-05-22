@@ -1,1 +1,59 @@
-<p>hiiiiiiiiiii</p>
+<div class="sendInput">
+
+  <form (ngSubmit)="onSend()">
+    <input type="text" class="inputMessage"
+      placeholder="Envoyer un message"
+      class="form-control"
+      name="message"
+      required
+      minlength="1"
+      maxlength="255"
+      [(ngModel)]="messageContent">
+
+    <input type="submit"
+      value="Envoyer"
+      class="btn btn-primary"
+      style="float: right;">
+  </form>
+
+</div>
+
+<br>
+<br>
+
+<ul style="list-style-type: none;">
+
+  <li class="message" *ngFor="let message of messageList.slice().reverse()">
+
+    <div
+      *ngIf="
+        message.userId !== user.id;
+        then notMyMsg;
+        else myMsg;">
+    </div>
+
+    <ng-template #myMsg>
+      <div class="myMsgBlock">
+        <img
+          class="pic"
+          src="../../assets/profile-pic.png"/>
+        <b><p class="publisher">{{ message.publishedBy }}</p></b>
+        <p class="date">{{ message.sendingDate }}</p>
+        <p class="content">{{ message.content }}</p>
+      </div>
+    </ng-template>
+
+    <ng-template #notMyMsg>
+      <div class="notMyMsgBlock">
+        <img
+          class="pic"
+          src="../../assets/profile-pic.png"/>
+        <p class="publisher">{{ message.publishedBy }}</p>
+        <p class="date">{{ message.sendingDate }}</p>
+        <p class="content">{{ message.content }}</p>
+      </div>
+    </ng-template>
+
+  </li>
+
+</ul>

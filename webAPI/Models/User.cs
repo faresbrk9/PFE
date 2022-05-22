@@ -46,6 +46,8 @@ namespace webAPI.Models
 
         public bool isAccepted { get; set; }
 
+        public bool isBlocked { get; set; }
+
         public bool isAdmin { get; set; }
     }
 }

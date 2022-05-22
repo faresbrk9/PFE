@@ -87,12 +87,6 @@ namespace webAPI.Controllers
             return NoContent();
         }
 
-        private bool UserExists(int id)
-        {
-            return _context.Companies.Any(e => e.Id == id);
-        }
-
-
         // POST: api/Company
         [HttpPost("addCompany")]
         public async Task<IActionResult> addCompany(Company company)
@@ -127,6 +121,11 @@ namespace webAPI.Controllers
             _context.Entry(com).CurrentValues.SetValues(companyEdited);
             await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        private bool UserExists(int id)
+        {
+            return _context.Companies.Any(e => e.Id == id);
         }
     }
 }

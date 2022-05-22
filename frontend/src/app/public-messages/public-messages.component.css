@@ -1,0 +1,53 @@
+.sendInput {
+
+}
+
+.inputMessage {
+  /*padding:25px;
+  margin-bottom: 25px;*/
+}
+
+.btn {
+}
+
+.publisher {
+  font-size: 20px;
+  margin-left: 35px;
+}
+
+.date {
+  font-size: 10px;
+  margin-top: -20px;
+  margin-left: 35px;
+}
+
+.content {
+  font-size: 15px;
+  margin-top: -10px;
+  margin-left: 35px;
+  width: 1120px;
+
+}
+
+.pic {
+  margin-top: 4px;
+  margin-left: 2px;
+  float: left;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.myMsgBlock {
+  background-color: #E0FFFF;
+  margin-left: -50px;
+  margin-right: -50px;
+  margin-bottom: -15px;
+}
+
+.notMyMsgBlock {
+  background-color: white;
+  margin-left: -50px;
+  margin-right: -50px;
+  margin-bottom: -15px;
+}

@@ -67,4 +67,8 @@ export class CompanyInfoUpdateComponent implements OnInit {
     });}, 500);
   }
 
+  onCancel() {
+    this.router.navigateByUrl('/user-account');
+  }
+
 }

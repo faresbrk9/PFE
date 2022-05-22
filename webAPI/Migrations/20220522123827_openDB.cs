@@ -25,6 +25,7 @@ namespace webAPI.Migrations
                     fax = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     webSite = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     isAccepted = table.Column<bool>(type: "bit", nullable: false),
+                    isBlocked = table.Column<bool>(type: "bit", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -71,7 +72,7 @@ namespace webAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     content = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     senderId = table.Column<int>(type: "int", nullable: true),
                     receiverId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -97,7 +98,9 @@ namespace webAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     content = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    publishedBy = table.Column<string>(type: "nvarchar(255)", nullable: false),
+                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isPublished = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -118,7 +121,8 @@ namespace webAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     content = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    isPublished = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     publicMessageId = table.Column<int>(type: "int", nullable: true)
                 },

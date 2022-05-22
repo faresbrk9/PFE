@@ -97,7 +97,7 @@ namespace webAPI.Migrations
                     b.Property<int?>("senderId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("sendingDate")
+                    b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -124,7 +124,14 @@ namespace webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime>("sendingDate")
+                    b.Property<bool>("isPublished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("publishedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -149,10 +156,13 @@ namespace webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("isPublished")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("publicMessageId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("sendingDate")
+                    b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -194,6 +204,9 @@ namespace webAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isBlocked")
                         .HasColumnType("bit");
 
                     b.Property<string>("lastName")

@@ -16,8 +16,7 @@ namespace webAPI.Models
         [Column(TypeName = "nvarchar(255)")]
         public string content { get; set; }
 
-        [Required]
-        public DateTime sendingDate { get; set; }
+        public DateTime? sendingDate { get; set; }
 
         [ForeignKey("senderId")]
         public int? senderId { get; set; }

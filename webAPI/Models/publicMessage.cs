@@ -17,11 +17,16 @@ namespace webAPI.Models
         public string content { get; set; }
 
         [Required]
-        public DateTime sendingDate { get; set; }
+        [Column(TypeName = "nvarchar(255)")]
+        public string publishedBy { get; set; }
+
+        public DateTime? sendingDate { get; set; }
+
+        public bool isPublished { get; set; }
 
         [ForeignKey("senderId")]
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

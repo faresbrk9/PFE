@@ -45,4 +45,8 @@ export class AddCompanyComponent implements OnInit {
     }, 500);
   }
 
+  onCancel() {
+    this.router.navigateByUrl('/user-account');
+  }
+
 }
