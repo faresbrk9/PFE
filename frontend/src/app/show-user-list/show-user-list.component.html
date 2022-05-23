@@ -2,25 +2,21 @@
   <thead>
     <th>Nom</th>
     <th>Prenom</th>
-    <th>Email</th>
-    <th>CIN</th>
     <th>Visiter le profil</th>
     <th>Envoyer un message</th>
   </thead>
   <tbody>
-    <tr *ngFor="let item of userList$|async">
+    <tr *ngFor="let item of userList">
       <td>{{item.lastName}}</td>
       <td>{{item.firstName}}</td>
-      <td>{{item.email}}</td>
-      <td>{{item.cin}}</td>
       <td>
-        <button type="delete" class="btn btn-primary" (click)="onDelete(item.id)">
+        <button type="delete" class="btn btn-primary" (click)="onVisit(item)">
           Visiter
         </button>
       </td>
 
       <td>
-        <button type="button" class="btn btn-primary" (click)="onDelete(item.id)">
+        <button type="button" class="btn btn-primary" (click)="onMessage(item.id)">
           Message
         </button>
       </td>

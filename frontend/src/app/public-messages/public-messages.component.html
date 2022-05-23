@@ -40,10 +40,10 @@
         <b><p class="publisher">{{ message.publishedBy }}</p></b>
         <p class="date">{{ message.sendingDate }}</p>
         <p class="content">{{ message.content }}</p>
-        <hr class="separatingLine" style="margin-left: 25px;">
+        <br>
 
         <button class="btn btn-secondary"
-          (click)="showResponses(message.id)">Réponses</button>
+          (click)="showResponses(message.id)" style="width: 1185px;">Réponses</button>
 
         <div *ngIf="x == message.id && intervalTest">
           <div class="sendResponseInput">
@@ -71,7 +71,7 @@
                 <b><p class="publisher">{{ response.publishedBy }}</p></b>
                 <p class="date">{{ response.sendingDate }}</p>
                 <p class="content">{{ response.content }}</p>
-                <hr class="separatingLine">
+                <br>
               </li>
 
             </ul>
@@ -89,6 +89,43 @@
         <p class="publisher">{{ message.publishedBy }}</p>
         <p class="date">{{ message.sendingDate }}</p>
         <p class="content">{{ message.content }}</p>
+        <br>
+
+        <button class="btn btn-secondary"
+          (click)="showResponses(message.id)" style="width: 1185px;">Réponses</button>
+
+        <div *ngIf="x == message.id && intervalTest">
+          <div class="sendResponseInput">
+            <form (ngSubmit)="onResponseSend()" autocomplete="off">
+              <input type="text" class="inputMessage"
+                placeholder="Envoyer un réponse"
+                class="form-control"
+                name="message"
+                required
+                minlength="1"
+                maxlength="255"
+                [(ngModel)]="responseContent">
+              <input type="submit"
+                value="Répondre"
+                class="btn btn-primary"
+                style="float: right;">
+            </form>
+          </div>
+
+          <div class="responseList">
+            <ul style="list-style-type: none;">
+
+              <li class="message" *ngFor="let response of responseList.slice().reverse()">
+                <img class="pic" src="../../assets/profile-pic.png"/>
+                <b><p class="publisher">{{ response.publishedBy }}</p></b>
+                <p class="date">{{ response.sendingDate }}</p>
+                <p class="content">{{ response.content }}</p>
+                <br>
+              </li>
+
+            </ul>
+          </div>
+        </div>
       </div>
     </ng-template>
 

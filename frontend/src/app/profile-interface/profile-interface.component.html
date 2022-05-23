@@ -10,16 +10,13 @@
       </div>
       <div class="card-body">
         <h1 class="card-title" style="text-align: center">
-          {{ user.lastName }} {{ user.firstName }}
+          {{ selectedUser.lastName }} {{ selectedUser.firstName }}
         </h1>
       </div>
-      <button type="button" class="btn btn-success" (click)="onAdd()">
-        Ajouter une entreprise
+      <button type="button" class="btn btn-success" (click)="onMessage(selectedUser.id)">
+        Message
       </button>
 
-      <button type="button" class="btn btn-danger" style="margin-top: 10px;" (click)="onDelete()">
-        Supprimer mon compte
-      </button>
     </div>
   </div>
   <div class="col-sm-8 p-0">
@@ -31,51 +28,44 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Prénom:</strong>
-                <p>{{ user.lastName }}</p>
+                <p>{{ selectedUser.lastName }}</p>
               </div>
 
               <div class="heading">
                 <strong>Nom:</strong>
-                <p>{{ user.firstName }}</p>
+                <p>{{ selectedUser.firstName }}</p>
               </div>
 
               <div class="heading">
                 <strong>CIN:</strong>
-                <p>{{ user.cin }}</p>
+                <p>{{ selectedUser.cin }}</p>
               </div>
 
               <div class="heading">
                 <strong>Email:</strong>
-                <p>{{ user.email }}</p>
+                <p>{{ selectedUser.email }}</p>
               </div>
             </div>
 
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Tel:</strong>
-                <p>{{ user.tel }}</p>
+                <p>{{ selectedUser.tel }}</p>
               </div>
 
               <div class="heading">
                 <strong>Addresse:</strong>
-                <p>{{ user.address }}</p>
+                <p>{{ selectedUser.address }}</p>
               </div>
 
               <div class="heading">
                 <strong>Site Web:</strong>
-                <p>{{ user.webSite }}</p>
+                <p>{{ selectedUser.webSite }}</p>
               </div>
               <div class="heading">
                 <strong>Fax</strong>
-                <p>{{ user.fax }}</p>
+                <p>{{ selectedUser.fax }}</p>
               </div>
-              <br />
-              <button
-                type="button"
-                class="btn btn-primary"
-                routerLink="/user-info-update">
-                Editer
-              </button>
             </div>
           </div>
         </tab>
@@ -86,69 +76,69 @@
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Raison Sociale:</strong>
-                <p>{{ company[companyIndex].raisonSociale }}</p>
+                <p>{{ selectedUserCompany[companyIndex].raisonSociale }}</p>
               </div>
 
               <div class="heading">
                 <strong>Capitale Sociale:</strong>
-                <p>{{ company[companyIndex].capitalSociale }}</p>
+                <p>{{ selectedUserCompany[companyIndex].capitalSociale }}</p>
               </div>
 
               <div class="heading">
                 <strong>Siège Sociale:</strong>
-                <p>{{ company[companyIndex].siegeSociale }}</p>
+                <p>{{ selectedUserCompany[companyIndex].siegeSociale }}</p>
               </div>
 
               <div class="heading">
                 <strong>Forme Juridique:</strong>
-                <p>{{ company[companyIndex].formeJuridique }}</p>
+                <p>{{ selectedUserCompany[companyIndex].formeJuridique }}</p>
               </div>
 
               <div class="heading">
                 <strong>Matricule Fiscal:</strong>
-                <p>{{ company[companyIndex].matriculFiscal }}</p>
+                <p>{{ selectedUserCompany[companyIndex].matriculFiscal }}</p>
               </div>
 
               <div class="heading">
                 <strong>RNE:</strong>
-                <p>{{ company[companyIndex].rne }}</p>
+                <p>{{ selectedUserCompany[companyIndex].rne }}</p>
               </div>
 
               <div class="heading">
                 <strong>Secteur Activité:</strong>
-                <p>{{ company[companyIndex].secteurActivite }}</p>
+                <p>{{ selectedUserCompany[companyIndex].secteurActivite }}</p>
               </div>
             </div>
 
             <div class="col-sm-6">
               <div class="heading">
                 <strong>Produits:</strong>
-                <p>{{ company[companyIndex].produits }}</p>
+                <p>{{ selectedUserCompany[companyIndex].produits }}</p>
               </div>
 
               <div class="heading">
                 <strong>Nombre d'employées:</strong>
-                <p>{{ company[companyIndex].nbreEmployes }}</p>
+                <p>{{ selectedUserCompany[companyIndex].nbreEmployes }}</p>
               </div>
 
               <div class="heading">
                 <strong>Tel:</strong>
-                <p>{{ company[companyIndex].tel }}</p>
+                <p>{{ selectedUserCompany[companyIndex].tel }}</p>
               </div>
 
               <div class="heading">
                 <strong>Fax:</strong>
-                <p>{{ company[companyIndex].fax }}</p>
+                <p>{{ selectedUserCompany[companyIndex].fax }}</p>
               </div>
 
               <div class="heading">
                 <strong>E-mail:</strong>
-                <p>{{ company[companyIndex].email }}</p>
+                <p>{{ selectedUserCompany[companyIndex].email }}</p>
               </div>
 
               <div class="heading">
                 <strong>Site Web:</strong>
-                <p>{{ company[companyIndex].webSite }}</p>
+                <p>{{ selectedUserCompany[companyIndex].webSite }}</p>
               </div>
 
               <br>
@@ -159,10 +149,6 @@
 
               <button type="button" class="btn btn-primary" (click)="onNext()" style="margin-right: 10px;">
                 Suivante
-              </button>
-
-              <button type="button" class="btn btn-primary" (click)="onEdit()">
-                Editer
               </button>
 
             </div>

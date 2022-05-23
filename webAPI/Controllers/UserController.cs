@@ -26,11 +26,38 @@ namespace webAPI.Controllers
         }
 
         // GET: api/Crud
+        [HttpGet("unsecure")]
+        public async Task<IActionResult> GetUnsecure()
+        {
+            var users = await _context.Users.ToListAsync();
+            return Ok(users);
+        }
+
+        // GET: api/Crud
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var users = await _context.Users.ToListAsync();
-            return Ok(users);
+            List<UserPublicInfoDTO> list = new List<UserPublicInfoDTO>();
+            foreach (var user in users)
+            {
+                var userInfo = new UserPublicInfoDTO();
+                userInfo.Id = user.Id;
+                userInfo.lastName = user.lastName;
+                userInfo.firstName = user.firstName;
+                userInfo.email = user.email;
+                userInfo.CIN = user.CIN;
+                userInfo.tel = user.tel;
+                userInfo.address = user.address;
+                userInfo.fax = user.fax;
+                userInfo.webSite = user.webSite;
+                userInfo.isAdmin = user.isAdmin;
+                list.Add(userInfo);
+
+            }
+
+
+            return Ok(list);
         }
 
         // GET: api/Crud/5

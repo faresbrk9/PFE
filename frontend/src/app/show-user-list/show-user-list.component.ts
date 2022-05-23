@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { TabHeadingDirective } from 'ngx-bootstrap/tabs';
 import { Observable } from 'rxjs';
@@ -10,22 +11,40 @@ import { SignInService } from '../service/signIn.service';
 })
 export class ShowUserListComponent implements OnInit {
 
-  userList$!:Observable<any[]>;
-  companyList$!:Observable<any[]>;
-  //x = localStorage.getItem('userInfo');
+  getUserList = localStorage.getItem('userList');
+  userList = JSON.parse(this.getUserList);
+
+  getUser = localStorage.getItem('userInfo');
+  user = JSON.parse(this.getUser);
 
 
-  constructor(private service: SignInService) { }
+  constructor(private service: SignInService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.userList$ = this.service.getUsers();
-    this.companyList$ = this.service.getCompanies();
+    setInterval(() => this.onLoadUsers(), 500);
   }
 
-  onDelete(id:number|string){
-    this.service.declineUser(id).subscribe();
-    setTimeout(() => {window.location.reload();
-    }, 100);
+  onLoadUsers(){
+    this.service.getUsers().subscribe((data:any) => {
+      localStorage.setItem("userList", JSON.stringify(data));
+    })
+    console.log(this.userList);
+  }
+
+  onVisit(item:any) {
+    localStorage.setItem("selectedUser", JSON.stringify(item));
+    if (item.id == this.user.id)
+    {
+      this.router.navigateByUrl('/user-account')
+    }
+    else
+    {
+      this.router.navigateByUrl('/profile');
+    }
+  }
+
+  onMessage(id) {
 
   }
 

@@ -18,6 +18,7 @@ import { PublicMessagesComponent } from './public-messages/public-messages.compo
 import { UserInfoUpdateComponent } from './user-info-update/user-info-update.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { CompanyInfoUpdateComponent } from './company-info-update/company-info-update.component';
+import { ProfileInterfaceComponent } from './profile-interface/profile-interface.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'user-management',component: UserManagementComponent},
   {path: 'public-messages',component: PublicMessagesComponent},
+  {path: 'profile',component: ProfileInterfaceComponent},
   {path: '',component: HomeComponent}
 ]
 
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     PublicMessagesComponent,
       UserInfoUpdateComponent,
       AddCompanyComponent,
-      CompanyInfoUpdateComponent
+      CompanyInfoUpdateComponent,
+      ProfileInterfaceComponent
    ],
   imports: [
     BrowserModule,
