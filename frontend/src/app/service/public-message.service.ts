@@ -19,6 +19,4 @@ sendPublicMessage(data:any) {
   return this.http.post(`${this.url}/sendMessage`, data);
 }
 
-
-
 }

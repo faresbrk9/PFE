@@ -16,7 +16,7 @@
       </td>
 
       <td>
-        <button type="button" class="btn btn-primary" (click)="onMessage(item.id)">
+        <button type="button" class="btn btn-primary" (click)="onMessage(item)" *ngIf="user.id != item.id">
           Message
         </button>
       </td>

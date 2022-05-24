@@ -29,7 +29,6 @@ export class ShowUserListComponent implements OnInit {
     this.service.getUsers().subscribe((data:any) => {
       localStorage.setItem("userList", JSON.stringify(data));
     })
-    console.log(this.userList);
   }
 
   onVisit(item:any) {
@@ -44,8 +43,14 @@ export class ShowUserListComponent implements OnInit {
     }
   }
 
-  onMessage(id) {
+  onMessage(item:any) {
+    localStorage.setItem("selectedReceiver", JSON.stringify(item));
+    this.router.navigateByUrl('/private-messages').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
 
-  }
+  });
+}
 
 }

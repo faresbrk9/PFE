@@ -1,0 +1,58 @@
+<h1>{{receiver.lastName}} {{receiver.firstName}}</h1>
+<ul style="margin: 0; padding :0; list-style: none;">
+  <li class="message" *ngFor="let message of messageList">
+      <div
+        *ngIf="
+          message.senderId !== user.id;
+          then incoming_msg;
+          else outgoing_msg
+        "
+      ></div>
+
+      <ng-template #incoming_msg>
+        <div class="incoming_msg">
+            <img class="pic"
+              src="../../assets/profile-pic.png"
+            />
+
+          <div class="received_msg">
+            <div class="received_withd_msg">
+              <p>{{ message.content }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #outgoing_msg>
+        <div class="outgoing_msg">
+          <div class="sent_msg">
+            <p>{{ message.content }}</p>
+          </div>
+        </div>
+      </ng-template>
+
+  </li>
+  <br>
+</ul>
+
+<br>
+<br>
+
+<div class="sendInput">
+
+  <form (ngSubmit)="onSend()" autocomplete="off">
+    <input type="text" class="inputMessage"
+      placeholder="Envoyer un message"
+      class="form-control"
+      name="message"
+      required
+      minlength="1"
+      maxlength="255"
+      [(ngModel)]="newMessage">
+
+    <input type="submit"
+      value="Envoyer"
+      class="btn btn-primary"
+      style="float: right;">
+  </form>
+</div>

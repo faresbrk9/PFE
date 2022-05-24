@@ -56,8 +56,13 @@ export class ProfileInterfaceComponent implements OnInit {
     }
   }
 
-  onMessage(id) {
+  onMessage(item:any) {
+    localStorage.setItem("selectedReceiver", JSON.stringify(item));
+    this.router.navigateByUrl('/private-messages').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
 
-  }
-
+  });
+}
 }
