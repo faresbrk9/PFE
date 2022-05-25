@@ -71,22 +71,6 @@ namespace webAPI.Controllers
             return Ok();
         }
 
-        // DELETE: api/publicMessageResponse/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePublicMessageResponse(int id)
-        {
-            var response = await _context.PublicMessageResponses.FindAsync(id);
-            if (response == null)
-            {
-                return NotFound();
-            }
-
-            _context.PublicMessageResponses.Remove(response);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         // Post: api/publicMessageResponse/acceptPublishment
         [HttpPost("acceptPublishmentt")]
         public async Task<IActionResult> AcceptPublishment(int id)
@@ -106,6 +90,26 @@ namespace webAPI.Controllers
 
                 return Ok();
             }
+        }
+
+        // DELETE: api/publicMessageResponse/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteResponse(int id)
+        {
+            var response = await _context.PublicMessageResponses.FindAsync(id);
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                _context.PublicMessageResponses.Remove(response);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+
         }
 
     }

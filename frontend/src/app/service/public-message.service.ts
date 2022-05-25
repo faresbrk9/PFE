@@ -19,4 +19,8 @@ sendPublicMessage(data:any) {
   return this.http.post(`${this.url}/sendMessage`, data);
 }
 
+deleteMessage(id:any) {
+  return this.http.delete(this.url + `/${id}`);
+}
+
 }

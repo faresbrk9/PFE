@@ -19,4 +19,8 @@ sendResponse(data:any) {
   return this.http.post(`${this.url}/sendResponse`, data);
 }
 
+deleteResponse(id:any) {
+  return this.http.delete(this.url + `/${id}`);
+}
+
 }

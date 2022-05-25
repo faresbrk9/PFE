@@ -22,7 +22,6 @@ export class PrivateMessagesComponent implements OnInit {
   constructor(private service:PrivateMessageService) { }
 
   ngOnInit() {
-    console.log(this.receiver);
     setInterval(() => this.onReload(), 100);
   }
 
@@ -33,7 +32,6 @@ export class PrivateMessagesComponent implements OnInit {
     }
     this.service.getPrivateMessages(cor).subscribe((data:any) => {
       localStorage.setItem("privateMessages", JSON.stringify(data));
-      console.log(data);
     });
 
 
@@ -57,6 +55,12 @@ export class PrivateMessagesComponent implements OnInit {
 
     this.service.sendPrivateMessage(message).subscribe();
     this.newMessage = "";
+  }
+
+  onDelete(id:any) {
+    console.log("clicked");
+    this.service.deleteMessage(id).subscribe();
+    window.location.reload();
   }
 
 }

@@ -18,4 +18,8 @@ sendPrivateMessage(data:any) {
   return this.http.post(`${this.url}/sendPrivateMessage`, data);
 }
 
+deleteMessage(id:any) {
+  return this.http.delete(this.url + `/${id}`);
+}
+
 }

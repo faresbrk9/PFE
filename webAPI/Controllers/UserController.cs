@@ -141,7 +141,7 @@ namespace webAPI.Controllers
             }
         }
 
-        // DELETE: api/Crud/5
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

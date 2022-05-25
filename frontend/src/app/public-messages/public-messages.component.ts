@@ -99,4 +99,22 @@ export class PublicMessagesComponent implements OnInit {
     this.responseContent = "";
   }
 
+  onMessageDelete(id:any) {
+    this.messageService.deleteMessage(id).subscribe();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+
+  }
+
+  onResponseDelete(id:any) {
+    this.responseService.deleteResponse(id).subscribe();
+  }
+
+  get isAdmin() {
+    const getUser = localStorage.getItem('userInfo');
+    const user = JSON.parse(getUser);
+    return user.isAdmin;
+  }
+
 }

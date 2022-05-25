@@ -12,7 +12,7 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220522190804_openDB")]
+    [Migration("20220524180337_openDB")]
     partial class openDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -81,5 +81,25 @@ namespace webAPI.Controllers
 
             return Ok();
         }
+
+        // DELETE: api/privateMessage/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            var message = await _context.PrivateMessages.FindAsync(id);
+            if (message == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                _context.PrivateMessages.Remove(message);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+
+        }
     }
 }

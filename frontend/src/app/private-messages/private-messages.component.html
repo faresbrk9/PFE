@@ -1,4 +1,5 @@
 <h1>{{receiver.lastName}} {{receiver.firstName}}</h1>
+<hr>
 <ul style="margin: 0; padding :0; list-style: none;">
   <li class="message" *ngFor="let message of messageList">
       <div
@@ -27,6 +28,9 @@
         <div class="outgoing_msg">
           <div class="sent_msg">
             <p>{{ message.content }}</p>
+            <button type="button" (click)="onDelete(message.id)"
+              class="btn btn.primary" style="float: right;margin-top: -10px;">
+              Supprimer</button>
           </div>
         </div>
       </ng-template>
