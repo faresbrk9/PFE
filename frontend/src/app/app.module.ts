@@ -21,6 +21,8 @@ import { ProfileInterfaceComponent } from './profile-interface/profile-interface
 import { PrivateMessagesComponent } from './private-messages/private-messages.component';
 import { InscriptionManagementComponent } from './inscription-management/inscription-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { UserPublicMessagesComponent } from './user-public-messages/user-public-messages.component';
+import { UnreadPrivateMessagesComponent } from './unread-private-messages/unread-private-messages.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
@@ -36,6 +38,8 @@ const appRoutes: Routes = [
   {path: 'private-messages',component: PrivateMessagesComponent},
   {path: 'profile',component: ProfileInterfaceComponent},
   {path: 'inscription-management',component: InscriptionManagementComponent},
+  {path: 'user-public-messages',component: UserPublicMessagesComponent},
+  {path: 'unread-messages',component: UnreadPrivateMessagesComponent},
   {path: '',component: HomeComponent}
 ]
 
@@ -55,7 +59,9 @@ const appRoutes: Routes = [
       CompanyInfoUpdateComponent,
       ProfileInterfaceComponent,
       PrivateMessagesComponent,
-      InscriptionManagementComponent
+      InscriptionManagementComponent,
+      UserPublicMessagesComponent,
+      UnreadPrivateMessagesComponent
    ],
   imports: [
     BrowserModule,

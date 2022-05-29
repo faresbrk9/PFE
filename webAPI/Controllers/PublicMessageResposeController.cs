@@ -137,5 +137,46 @@ namespace webAPI.Controllers
             return Ok(notificationsCount);
         }
 
+        // GET: api/publicMessageResponses/unreadResponsesCount
+        [HttpGet("unreadResponsesCount/{MessageId}")]
+        public async Task<ActionResult<List<publicMessageResponse>>> GetUnreadResponsesCountByMessage(int MessageId)
+        {
+            var responses = await _context.PublicMessageResponses.Where(x => x.publicMessageId == MessageId).ToListAsync();
+            List<publicMessageResponse> list = new List<publicMessageResponse>();
+            foreach (var response in responses)
+            {
+                if (response.isRead == false)
+                {
+                    list.Add(response);
+                }
+            }
+
+            var responsesCount = new notificationsCountDTO();
+            responsesCount.count = list.Count;
+
+            return Ok(responsesCount);
+        }
+
+        // Get: api/publicMessageResponses/turnRead
+        [HttpGet("turnRead/{id}")]
+        public async Task<IActionResult> TurnRead(int id)
+        {
+            var response = await _context.PublicMessageResponses.FindAsync(id);
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                var responseRead = response;
+                responseRead.isRead = true;
+                _context.Entry(response).CurrentValues.SetValues(responseRead);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+        }
+
     }
 }

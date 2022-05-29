@@ -1,0 +1,114 @@
+<div class="sendInput">
+
+  <form (ngSubmit)="onSend()" autocomplete="off">
+    <input type="text" class="inputMessage"
+      placeholder="Envoyer un message"
+      class="form-control"
+      name="message"
+      required
+      minlength="1"
+      maxlength="255"
+      [(ngModel)]="messageContent">
+
+    <input type="submit"
+      value="Envoyer"
+      class="btn btn-primary"
+      style="float: right;">
+  </form>
+
+</div>
+
+<br>
+<br>
+
+<ul style="list-style-type: none;">
+
+  <li class="message" *ngFor="let message of messageList.slice().reverse()">
+
+    <div class="myMsgBlock">
+      <div class="notificationsBlock">
+        <p class="notifications">{{3}}</p>
+      </div>
+      <img
+        class="pic"
+        src="../../assets/profile-pic.png"/>
+      <b><p class="publisher">{{ message.publishedBy }}</p></b>
+      <p class="date">{{ message.sendingDate }}</p>
+      <p class="content">{{ message.content }}</p>
+      <button type="button" (click)="onMessageDelete(message.id)"
+                class="btn btn.primary" style="float: right;margin-top: -10px;">
+                Supprimer</button>
+      <br>
+
+      <button class="btn btn-secondary"
+        (click)="showResponses(message.id)" style="width: 1185px;">Réponses</button>
+
+      <div *ngIf="x == message.id && intervalTest">
+        <div class="sendResponseInput">
+          <form (ngSubmit)="onResponseSend()" autocomplete="off">
+            <input type="text" class="inputMessage"
+              placeholder="Envoyer un réponse"
+              class="form-control"
+              name="message"
+              required
+              minlength="1"
+              maxlength="255"
+              [(ngModel)]="responseContent">
+            <input type="submit"
+              value="Répondre"
+              class="btn btn-primary"
+              style="float: right;">
+          </form>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="responseList">
+          <ul style="list-style-type: none;">
+
+            <li class="message" *ngFor="let response of responseList.slice().reverse()">
+
+              <div *ngIf="response.isRead !== false;
+                          then readResponse;
+                          else unreadResponse;">
+              </div>
+              <br>
+
+              <ng-template #readResponse>
+                <img class="pic" src="../../assets/profile-pic.png"/>
+                      <b><p class="publisher">{{ response.publishedBy }}</p></b>
+                      <p class="date">{{ response.sendingDate }}</p>
+                      <p class="content">{{ response.content }}</p>
+                      <div *ngIf="response.userId == user.id">
+                        <button type="button" (click)="onResponseDelete(response.id)"
+                          class="btn btn.primary" style="float: right;margin-top: -10px;">
+                          Supprimer</button>
+                      </div>
+              </ng-template>
+
+              <ng-template #unreadResponse>
+                <div style="background-color:#ffcccb;margin-left:0px">
+                  <img class="pic" src="../../assets/profile-pic.png"/>
+                        <b><p class="publisher">{{ response.publishedBy }}</p></b>
+                        <p class="date">{{ response.sendingDate }}</p>
+                        <p class="content">{{ response.content }}</p>
+                        <div *ngIf="response.userId == user.id">
+                          <button type="button" (click)="onResponseDelete(response.id)"
+                            class="btn btn.primary" style="float: right;margin-top: -10px;">
+                            Supprimer</button>
+                        </div>
+                </div>
+              </ng-template>
+
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </li>
+
+</ul>

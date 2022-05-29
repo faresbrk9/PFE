@@ -37,7 +37,7 @@
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/" routerLinkActive="active">Mes Messages publics
+            routerLink="/user-public-messages" routerLinkActive="active">Mes Messages publics
             <div class="notificationsBlock">
               <p class="notifications">{{x}}</p>
             </div>
@@ -46,7 +46,7 @@
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/" routerLinkActive="active">Messages Reçus
+            routerLink="/unread-messages" routerLinkActive="active">Messages Reçus
             <div class="notificationsBlock">
               <p class="notifications">{{y}}</p>
             </div>

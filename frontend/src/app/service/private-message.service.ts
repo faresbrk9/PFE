@@ -27,4 +27,12 @@ getNotifications(id:any):Observable<any[]> {
   return this.http.get<any>(`${this.url}/notifications` + `/${id}`);
 }
 
+getUnreadMessages(userId:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/unreadMessages` + `/${userId}`);
+}
+
+turnRead(id:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/turnRead` + `/${id}`);
+}
+
 }

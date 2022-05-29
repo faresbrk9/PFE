@@ -1,0 +1,15 @@
+<ul style="margin: 0; padding :0; list-style: none;">
+  <li class="message" *ngFor="let message of unreadMessagesList">
+    <div class="incoming_msg">
+      <img class="pic"
+        src="../../assets/profile-pic.png"/>
+        <b><p class="senderName">Frawa Ala</p></b>
+
+      <div class="received_msg">
+        <div class="received_withd_msg">
+          <p>{{ message.content }}</p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -121,5 +121,43 @@ namespace webAPI.Controllers
 
             return Ok(notificationsCount);
         }
+
+        // GET: api/privateMessage/unreadMessages
+        [HttpGet("unreadMessages/{UserId}")]
+        public async Task<ActionResult<List<privateMessage>>> GetUnreadMessagesByUser(int UserId)
+        {
+            var messages = await _context.PrivateMessages.Where(x => x.receiverId == UserId).ToListAsync();
+            List<privateMessage> list = new List<privateMessage>();
+            foreach (var message in messages)
+            {
+                if (message.isRead == false)
+                {
+                    list.Add(message);
+                }
+            }
+
+            return Ok(list);
+        }
+
+        // Get: api/privateMessage/turnRead
+        [HttpGet("turnRead/{id}")]
+        public async Task<IActionResult> TurnRead(int id)
+        {
+            var message = await _context.PrivateMessages.FindAsync(id);
+            if (message == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                var messageRead = message;
+                messageRead.isRead = true;
+                _context.Entry(message).CurrentValues.SetValues(messageRead);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+        }
     }
 }

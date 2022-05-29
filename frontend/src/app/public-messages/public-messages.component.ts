@@ -16,14 +16,13 @@ export class PublicMessagesComponent implements OnInit {
   getUser = localStorage.getItem('userInfo');
   user = JSON.parse(this.getUser);
 
-  messageContent:any;
-
   x = 0;
   intervalTest = false;
 
   getResponses:any;
   responseList:any;
 
+  messageContent:any;
   responseContent:any;
 
   constructor(private messageService: PublicMessageService,

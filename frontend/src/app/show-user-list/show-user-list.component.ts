@@ -1,7 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { TabHeadingDirective } from 'ngx-bootstrap/tabs';
-import { Observable } from 'rxjs';
 import { SignInService } from '../service/signIn.service';
 
 @Component({

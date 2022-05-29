@@ -23,4 +23,8 @@ deleteMessage(id:any) {
   return this.http.delete(this.url + `/${id}`);
 }
 
+getUserMessages(userId:any):Observable<any[]> {
+  return this.http.get<any>(this.url + `/${userId}`);
+}
+
 }

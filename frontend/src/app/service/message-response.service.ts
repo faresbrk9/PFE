@@ -23,8 +23,16 @@ deleteResponse(id:any) {
   return this.http.delete(this.url + `/${id}`);
 }
 
-getNotifications(id:any):Observable<any[]> {
-  return this.http.get<any>(`${this.url}/notifications` + `/${id}`);
+getNotifications(userId:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/notifications` + `/${userId}`);
+}
+
+getUnreadResponsesCount(messageId:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/unreadResponsesCount` + `/${messageId}`);
+}
+
+turnRead(id:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/turnRead` + `/${id}`);
 }
 
 }

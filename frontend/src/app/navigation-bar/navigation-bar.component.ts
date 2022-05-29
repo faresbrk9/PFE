@@ -29,7 +29,6 @@ export class NavigationBarComponent implements OnInit {
   onResponseNotificationsLoad() {
     this.responseService.getNotifications(this.user.id).subscribe((data:any) =>
       {
-        console.log(data);
         localStorage.setItem("responseNotifications", JSON.stringify(data));
     });
     let responseNotifications = localStorage.getItem('responseNotifications');
@@ -41,7 +40,6 @@ export class NavigationBarComponent implements OnInit {
   onPrivateMessagesNotificationsLoad() {
     this.privateMessageService.getNotifications(this.user.id).subscribe((data:any) =>
       {
-        console.log(data);
         localStorage.setItem("privateMessagesNotifications", JSON.stringify(data));
     });
     let responseNotifications = localStorage.getItem('privateMessagesNotifications');
