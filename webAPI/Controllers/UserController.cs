@@ -51,6 +51,8 @@ namespace webAPI.Controllers
                 userInfo.address = user.address;
                 userInfo.fax = user.fax;
                 userInfo.webSite = user.webSite;
+                userInfo.isAccepted = user.isAccepted;
+                userInfo.isBlocked = user.isBlocked;
                 userInfo.isAdmin = user.isAdmin;
                 list.Add(userInfo);
 
@@ -108,6 +110,8 @@ namespace webAPI.Controllers
                 loginRes.address = user.address;
                 loginRes.fax = user.fax;
                 loginRes.webSite = user.webSite;
+                loginRes.isAccepted = user.isAccepted;
+                loginRes.isBlocked = user.isBlocked;
                 loginRes.isAdmin = user.isAdmin;
                 loginRes.token = GenerateJWT(user);
 
@@ -121,7 +125,7 @@ namespace webAPI.Controllers
         }
 
         // Post: api/user/acceptInscription
-        [HttpPost("acceptInscription")]
+        [HttpGet("acceptInscription/{id}")]
         public async Task<IActionResult> AcceptInscription(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -194,6 +198,48 @@ namespace webAPI.Controllers
             loginRes.token = GenerateJWT(userLog);
 
             return Ok(loginRes);
+        }
+
+        // Post: api/user/blockUser
+        [HttpGet("blockUser/{id}")]
+        public async Task<IActionResult> blockUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                var userBlocked = user;
+                userBlocked.isBlocked = true;
+                _context.Entry(user).CurrentValues.SetValues(userBlocked);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
+        }
+
+        // Post: api/user/unblockUser
+        [HttpGet("unblockUser/{id}")]
+        public async Task<IActionResult> unblockUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                var userUnblocked = user;
+                userUnblocked.isBlocked = false;
+                _context.Entry(user).CurrentValues.SetValues(userUnblocked);
+                await _context.SaveChangesAsync();
+
+                return Ok();
+            }
         }
 
 

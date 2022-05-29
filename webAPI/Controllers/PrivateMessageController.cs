@@ -101,5 +101,25 @@ namespace webAPI.Controllers
             }
 
         }
+
+        // GET: api/privateMessage/notifications
+        [HttpGet("notifications/{UserId}")]
+        public async Task<ActionResult<List<privateMessage>>> GetNotifications(int UserId)
+        {
+            var messages = await _context.PrivateMessages.Where(x => x.receiverId == UserId).ToListAsync();
+            List<privateMessage> list = new List<privateMessage>();
+            foreach (var message in messages)
+            {
+                if (message.isRead == false)
+                {
+                    list.Add(message);
+                }
+            }
+
+            var notificationsCount = new notificationsCountDTO();
+            notificationsCount.count = list.Count;
+
+            return Ok(notificationsCount);
+        }
     }
 }

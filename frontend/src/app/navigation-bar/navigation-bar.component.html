@@ -36,20 +36,32 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/user-management" routerLinkActive="active">Gestion d'utilisateurs
+          <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
+            routerLink="/" routerLinkActive="active">Mes Messages publics
+            <div class="notificationsBlock">
+              <p class="notifications">{{x}}</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
+            routerLink="/" routerLinkActive="active">Messages Reçus
+            <div class="notificationsBlock">
+              <p class="notifications">{{y}}</p>
+            </div>
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/home" routerLinkActive="active">Gestion de message
+            routerLink="/inscription-management" routerLinkActive="active">Demandes d'inscriptions
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isAdminLogin"
-            routerLink="/home" routerLinkActive="active">Gestion de réponses
+            routerLink="/user-management" routerLinkActive="active">Gestion des utilisateurs
           </a>
         </li>
 

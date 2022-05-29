@@ -11,7 +11,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(private service: SignInService, private router: Router) { }
 
-  waitingUsers:any;
+  usersList:any;
+  blockedUsersList:any;
 
   ngOnInit() {
     this.service.getUsers().subscribe((data:any) =>
@@ -23,36 +24,60 @@ export class UserManagementComponent implements OnInit {
     let arr:any = [];
     for (var item of JSON.parse(getUserList))
     {
-      if(item.isAccepted == false)
+      if(item.isBlocked == false)
       {
         arr.push(item);
       }
     }
     console.log(arr);
-    this.waitingList(arr);
+    this.userList(arr);
+
+    let ar:any = [];
+    for (var item of JSON.parse(getUserList))
+    {
+      if(item.isBlocked == true)
+      {
+        ar.push(item);
+      }
+    }
+
+    console.log(ar);
+    this.blockedUserList(ar);
 
       }
 
 
-  onDecline(id:any){
+  onBlock(id:any){
     let x: number = +id;
-    this.service.declineUser(x).subscribe();
-    /*setTimeout(() => {window.location.reload();
-    }, 100);*/
+    this.service.blockUser(x).subscribe();
+    setTimeout(() => {window.location.reload();
+    }, 500);
 
   }
 
-  onAccept(id:any){
+  onUnblock(id:any){
     let x: number = +id;
     console.log(x);
-    this.service.acceptUser(x).subscribe();
-    /*setTimeout(() => {window.location.reload();
-    },100);*/
+    this.service.unblockUser(x).subscribe();
+    setTimeout(() => {window.location.reload();
+    },500);
 
   }
 
-  waitingList(x:any){
-    this.waitingUsers = x;
+  onDelete(id:any){
+    let x: number = +id;
+    this.service.declineUser(x).subscribe();
+    setTimeout(() => {window.location.reload();
+    }, 500);
+
+  }
+
+  userList(x:any){
+    this.usersList = x;
+  }
+
+  blockedUserList(x:any){
+    this.blockedUsersList = x;
   }
 
 }

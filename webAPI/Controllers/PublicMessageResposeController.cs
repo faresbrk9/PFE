@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using webAPI.Models;
+using webAPI.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace webAPI.Controllers
@@ -110,6 +111,30 @@ namespace webAPI.Controllers
                 return Ok();
             }
 
+        }
+
+        // GET: api/publicMessageResponses/notifications
+        [HttpGet("notifications/{UserId}")]
+        public async Task<ActionResult<List<publicMessageResponse>>> GetNotifications(int UserId)
+        {
+            var messages = await _context.PublicMessages.Where(x => x.UserId == UserId).ToListAsync();
+            List<publicMessageResponse> list = new List<publicMessageResponse>();
+            foreach (var message in messages)
+            {
+                var responses = await _context.PublicMessageResponses.Where(x => x.publicMessageId == message.Id).ToListAsync();
+                foreach (var response in responses)
+                {
+                    if (response.isRead == false)
+                    {
+                        list.Add(response);
+                    }
+                }
+            }
+
+            var notificationsCount = new notificationsCountDTO();
+            notificationsCount.count = list.Count;
+
+            return Ok(notificationsCount);
         }
 
     }

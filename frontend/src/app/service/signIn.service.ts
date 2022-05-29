@@ -25,8 +25,16 @@ declineUser(id:any) {
   return this.http.delete(this.url1 + `/${id}`);
 }
 
-acceptUser(id:any) {
-  return this.http.post(`${this.url1}/acceptInscription`, id);
+acceptUser(id:number) {
+  return this.http.get(`${this.url1}/acceptInscription` + `/${id}`);
+}
+
+blockUser(id:number) {
+  return this.http.get(`${this.url1}/blockUser` + `/${id}`);
+}
+
+unblockUser(id:number) {
+  return this.http.get(`${this.url1}/unblockUser` + `/${id}`);
 }
 
 login(data:any) {

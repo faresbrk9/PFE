@@ -23,4 +23,8 @@ deleteResponse(id:any) {
   return this.http.delete(this.url + `/${id}`);
 }
 
+getNotifications(id:any):Observable<any[]> {
+  return this.http.get<any>(`${this.url}/notifications` + `/${id}`);
+}
+
 }

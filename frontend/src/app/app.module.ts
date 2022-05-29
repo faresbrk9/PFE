@@ -13,13 +13,14 @@ import { LoginComponent } from './login/login.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { HomeComponent } from './home/home.component';
-import { UserManagementComponent } from './user-management/user-management.component';
 import { PublicMessagesComponent } from './public-messages/public-messages.component';
 import { UserInfoUpdateComponent } from './user-info-update/user-info-update.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { CompanyInfoUpdateComponent } from './company-info-update/company-info-update.component';
 import { ProfileInterfaceComponent } from './profile-interface/profile-interface.component';
 import { PrivateMessagesComponent } from './private-messages/private-messages.component';
+import { InscriptionManagementComponent } from './inscription-management/inscription-management.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   {path: 'public-messages',component: PublicMessagesComponent},
   {path: 'private-messages',component: PrivateMessagesComponent},
   {path: 'profile',component: ProfileInterfaceComponent},
+  {path: 'inscription-management',component: InscriptionManagementComponent},
   {path: '',component: HomeComponent}
 ]
 
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
       AddCompanyComponent,
       CompanyInfoUpdateComponent,
       ProfileInterfaceComponent,
-      PrivateMessagesComponent
+      PrivateMessagesComponent,
+      InscriptionManagementComponent
    ],
   imports: [
     BrowserModule,

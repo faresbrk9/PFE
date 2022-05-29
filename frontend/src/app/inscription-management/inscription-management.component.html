@@ -1,0 +1,35 @@
+<h3>Les utilisateurs en attente d'adhésion:</h3>
+<hr>
+<br>
+<table class="table table-striped">
+  <thead>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>E-mail</th>
+    <th>CIN</th>
+    <th>Accepter</th>
+    <th>Refuser</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of waitingUsers">
+        <td>{{item.lastName}}</td>
+        <td>{{item.firstName}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.cin}}</td>
+        <td>
+          <button type="button"
+                  class="btn btn-primary"
+                  (click)="onAccept(item.id)">
+            Accepter
+          </button>
+        </td>
+        <td>
+          <button type="button"
+                  class="btn btn-primary"
+                  (click)="onDecline(item.id)">
+            Refuser
+          </button>
+        </td>
+    </tr>
+  </tbody>
+</table>

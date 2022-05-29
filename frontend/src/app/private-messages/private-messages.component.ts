@@ -48,7 +48,7 @@ export class PrivateMessagesComponent implements OnInit {
   onSend() {
     var message = {
       content:this.newMessage,
-      isRead:true,
+      isRead:false,
       senderId:this.user.id,
       receiverId:this.receiver.id
     }

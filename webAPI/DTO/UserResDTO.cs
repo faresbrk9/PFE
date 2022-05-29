@@ -11,6 +11,8 @@ namespace webAPI.DTO
         public string? address { get; set; }
         public string? fax { get; set; }
         public string? webSite { get; set; }
+        public bool isAccepted { get; set; }
+        public bool isBlocked { get; set; }
         public bool isAdmin { get; set; }
         public string token { get; set; }
     }
