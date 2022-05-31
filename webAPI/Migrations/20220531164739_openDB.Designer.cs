@@ -12,7 +12,7 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220524180337_openDB")]
+    [Migration("20220531164739_openDB")]
     partial class openDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,7 +99,7 @@ namespace webAPI.Migrations
                     b.Property<int?>("receiverId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("senderId")
+                    b.Property<int>("senderId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("sendingDate")
@@ -129,15 +129,15 @@ namespace webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(2048)");
 
-                    b.Property<bool>("isPublished")
-                        .HasColumnType("bit");
-
                     b.Property<string>("publishedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("unreadResponsesCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -161,13 +161,10 @@ namespace webAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(2048)");
 
-                    b.Property<bool>("isPublished")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("isRead")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("publicMessageId")
+                    b.Property<int>("publicMessageId")
                         .HasColumnType("int");
 
                     b.Property<string>("publishedBy")
@@ -259,7 +256,9 @@ namespace webAPI.Migrations
 
                     b.HasOne("webAPI.Models.User", "sender")
                         .WithMany()
-                        .HasForeignKey("senderId");
+                        .HasForeignKey("senderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("receiver");
 
@@ -285,7 +284,9 @@ namespace webAPI.Migrations
 
                     b.HasOne("webAPI.Models.publicMessage", "publicMessage")
                         .WithMany()
-                        .HasForeignKey("publicMessageId");
+                        .HasForeignKey("publicMessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
 

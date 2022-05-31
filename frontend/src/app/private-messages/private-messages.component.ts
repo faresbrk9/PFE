@@ -22,7 +22,7 @@ export class PrivateMessagesComponent implements OnInit {
   constructor(private service:PrivateMessageService) { }
 
   ngOnInit() {
-    setInterval(() => this.onReload(), 100);
+    setInterval(() => this.onReload(), 200);
   }
 
   onLoad() {

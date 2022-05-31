@@ -24,16 +24,7 @@ namespace webAPI.Controllers
         [HttpGet("publishedResponses")]
         public async Task<ActionResult<List<publicMessageResponse>>> GetPublished()
         {
-            return Ok(await _context.PublicMessageResponses
-            .Where(x => x.isPublished == true).ToListAsync());
-        }
-
-        // GET: api/publicMessageResponses/unpublishedResponses
-        [HttpGet("unpublishedResponses")]
-        public async Task<ActionResult<List<publicMessageResponse>>> GetUnpublished()
-        {
-            return Ok(await _context.PublicMessageResponses
-            .Where(x => x.isPublished == false).ToListAsync());
+            return Ok(await _context.PublicMessageResponses.ToListAsync());
         }
 
         // GET: api/publicMessageResponses/5
@@ -62,7 +53,6 @@ namespace webAPI.Controllers
             res.content = response.content;
             res.publishedBy = response.publishedBy;
             res.sendingDate = MyTime;
-            res.isPublished = response.isPublished;
             res.UserId = response.UserId;
             res.publicMessageId = response.publicMessageId;
 
@@ -70,27 +60,6 @@ namespace webAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
-        }
-
-        // Post: api/publicMessageResponse/acceptPublishment
-        [HttpPost("acceptPublishmentt")]
-        public async Task<IActionResult> AcceptPublishment(int id)
-        {
-            var response = await _context.PublicMessageResponses.FindAsync(id);
-            if (response == null)
-            {
-                return Ok(NotFound());
-            }
-
-            else
-            {
-                var responseAccepted = response;
-                responseAccepted.isPublished = true;
-                _context.Entry(response).CurrentValues.SetValues(responseAccepted);
-                await _context.SaveChangesAsync();
-
-                return Ok();
-            }
         }
 
         // DELETE: api/publicMessageResponse/5

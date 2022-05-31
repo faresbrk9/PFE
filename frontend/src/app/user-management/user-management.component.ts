@@ -67,8 +67,8 @@ export class UserManagementComponent implements OnInit {
   onDelete(id:any){
     let x: number = +id;
     this.service.declineUser(x).subscribe();
-    setTimeout(() => {window.location.reload();
-    }, 500);
+    /*setTimeout(() => {window.location.reload();
+    }, 500);*/
 
   }
 

@@ -74,7 +74,7 @@ namespace webAPI.Migrations
                     content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isRead = table.Column<bool>(type: "bit", nullable: false),
-                    senderId = table.Column<int>(type: "int", nullable: true),
+                    senderId = table.Column<int>(type: "int", nullable: false),
                     receiverId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -89,7 +89,8 @@ namespace webAPI.Migrations
                         name: "FK_PrivateMessages_Users_senderId",
                         column: x => x.senderId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,7 +102,7 @@ namespace webAPI.Migrations
                     content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
                     publishedBy = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isPublished = table.Column<bool>(type: "bit", nullable: false),
+                    unreadResponsesCount = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -124,10 +125,9 @@ namespace webAPI.Migrations
                     content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
                     publishedBy = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    isPublished = table.Column<bool>(type: "bit", nullable: false),
                     isRead = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    publicMessageId = table.Column<int>(type: "int", nullable: true)
+                    publicMessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -136,7 +136,8 @@ namespace webAPI.Migrations
                         name: "FK_PublicMessageResponses_PublicMessages_publicMessageId",
                         column: x => x.publicMessageId,
                         principalTable: "PublicMessages",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PublicMessageResponses_Users_UserId",
                         column: x => x.UserId,

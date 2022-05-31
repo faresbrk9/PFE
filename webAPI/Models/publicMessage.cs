@@ -21,7 +21,7 @@ namespace webAPI.Models
 
         public DateTime? sendingDate { get; set; }
 
-        public bool isPublished { get; set; }
+        public int? unreadResponsesCount { get; set; }
 
         [ForeignKey("senderId")]
         public int UserId { get; set; }

@@ -157,6 +157,13 @@ namespace webAPI.Controllers
 
             else
             {
+                var receivePrivateMessages = await _context.PrivateMessages.Where(x => x.receiverId == user.Id).ToListAsync();
+                foreach (var message in receivePrivateMessages)
+                {
+                    _context.PrivateMessages.Remove(message);
+                    await _context.SaveChangesAsync();
+                }
+
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
 

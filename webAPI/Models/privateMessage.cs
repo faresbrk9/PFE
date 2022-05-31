@@ -20,7 +20,7 @@ namespace webAPI.Models
         public bool isRead { get; set; }
 
         [ForeignKey("senderId")]
-        public int? senderId { get; set; }
+        public int senderId { get; set; }
 
         public User? sender { get; set; }
 

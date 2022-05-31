@@ -21,7 +21,6 @@ namespace webAPI.Models
 
         public DateTime? sendingDate { get; set; }
 
-        public bool isPublished { get; set; }
         public bool isRead { get; set; }
 
         [ForeignKey("senderId")]
@@ -30,7 +29,7 @@ namespace webAPI.Models
         public User? User { get; set; }
 
         [ForeignKey("postedOn")]
-        public int? publicMessageId { get; set; }
+        public int publicMessageId { get; set; }
 
         public publicMessage? publicMessage { get; set; }
     }

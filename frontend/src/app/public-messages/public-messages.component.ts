@@ -44,7 +44,7 @@ export class PublicMessagesComponent implements OnInit {
     var message = {
       content:this.messageContent,
       publishedBy:this.user.lastName + " " + this.user.firstName,
-      isPublished:true,
+      unreadResponsesCount:0,
       userId:this.user.id,
     }
 
@@ -89,7 +89,6 @@ export class PublicMessagesComponent implements OnInit {
     var response = {
       content: this.responseContent,
       publishedBy: this.user.lastName + " " + this.user.firstName,
-      isPublished: true,
       isRead: false,
       userId: this.user.id,
       publicMessageId: this.x
