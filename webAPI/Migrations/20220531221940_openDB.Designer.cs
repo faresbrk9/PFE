@@ -12,7 +12,7 @@ using webAPI.Models;
 namespace webAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220531164739_openDB")]
+    [Migration("20220531221940_openDB")]
     partial class openDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,6 +104,10 @@ namespace webAPI.Migrations
 
                     b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("sentBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 

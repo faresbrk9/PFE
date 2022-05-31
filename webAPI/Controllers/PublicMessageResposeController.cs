@@ -59,6 +59,12 @@ namespace webAPI.Controllers
             _context.PublicMessageResponses.Add(res);
             await _context.SaveChangesAsync();
 
+            var message = await _context.PublicMessages.FindAsync(res.publicMessageId);
+            var messageUpdated = message;
+            messageUpdated.unreadResponsesCount = messageUpdated.unreadResponsesCount + 1;
+            _context.Entry(message).CurrentValues.SetValues(messageUpdated);
+            await _context.SaveChangesAsync();
+
             return Ok();
         }
 
@@ -74,6 +80,12 @@ namespace webAPI.Controllers
 
             else
             {
+                var message = await _context.PublicMessages.FindAsync(response.publicMessageId);
+                var messageUpdated = message;
+                messageUpdated.unreadResponsesCount = messageUpdated.unreadResponsesCount - 1;
+                _context.Entry(message).CurrentValues.SetValues(messageUpdated);
+                await _context.SaveChangesAsync();
+
                 _context.PublicMessageResponses.Remove(response);
                 await _context.SaveChangesAsync();
 
@@ -141,6 +153,22 @@ namespace webAPI.Controllers
                 var responseRead = response;
                 responseRead.isRead = true;
                 _context.Entry(response).CurrentValues.SetValues(responseRead);
+                await _context.SaveChangesAsync();
+
+                var responses = await _context.PublicMessageResponses
+                .Where(e => e.publicMessage == response.publicMessage).ToListAsync();
+                var x = 0;
+                foreach (var res in responses)
+                {
+                    if (res.isRead == false)
+                    {
+                        x = x + 1;
+                    }
+                }
+                var message = await _context.PublicMessages.FindAsync(response.publicMessageId);
+                var messageUpdated = message;
+                messageUpdated.unreadResponsesCount = x;
+                _context.Entry(message).CurrentValues.SetValues(messageUpdated);
                 await _context.SaveChangesAsync();
 
                 return Ok();

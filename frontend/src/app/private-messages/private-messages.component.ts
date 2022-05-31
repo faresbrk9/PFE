@@ -23,6 +23,7 @@ export class PrivateMessagesComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => this.onReload(), 200);
+    setInterval(() => this.readMsg(), 500);
   }
 
   onLoad() {
@@ -48,6 +49,7 @@ export class PrivateMessagesComponent implements OnInit {
   onSend() {
     var message = {
       content:this.newMessage,
+      sentBy:this.receiver.lastName + " " + this.receiver.firstName,
       isRead:false,
       senderId:this.user.id,
       receiverId:this.receiver.id
@@ -61,6 +63,16 @@ export class PrivateMessagesComponent implements OnInit {
     console.log("clicked");
     this.service.deleteMessage(id).subscribe();
     window.location.reload();
+  }
+
+  readMsg() {
+    for (var msg of this.messageList)
+    {
+      if (msg.receiverId == this.user.id)
+      {
+        this.service.turnRead(msg.id).subscribe();
+      }
+    }
   }
 
 }

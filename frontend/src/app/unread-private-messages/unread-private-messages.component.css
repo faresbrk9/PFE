@@ -63,3 +63,8 @@
   margin-bottom: -20px;
   margin-left: 35px;
 }
+
+.received_withd_msg p:hover {
+  background-color: #05728f;
+  color: #fff;
+}

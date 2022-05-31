@@ -3,9 +3,9 @@
     <div class="incoming_msg">
       <img class="pic"
         src="../../assets/profile-pic.png"/>
-        <b><p class="senderName">Frawa Ala</p></b>
+        <b><p class="senderName">{{message.sentBy}}</p></b>
 
-      <div class="received_msg">
+      <div class="received_msg" (click)="onPrivateMessages(message)">
         <div class="received_withd_msg">
           <p>{{ message.content }}</p>
         </div>

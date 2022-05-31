@@ -19,25 +19,29 @@
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/public-messages" routerLinkActive="active">Messages publics
+            routerLink="/public-messages" routerLinkActive="active"
+            (click)="onPublicMessages()">Messages publics
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/user-account" routerLinkActive="active">Mon profil
+            routerLink="/user-account" routerLinkActive="active"
+            (click)="onMyProfile()">Mon profil
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link"aria-current="page" *ngIf="isUserlogin"
-            routerLink="/show-list" routerLinkActive="active">Utilisateurs
+            routerLink="/show-list" routerLinkActive="active"
+            (click)="onUsersList()">Utilisateurs
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/user-public-messages" routerLinkActive="active">Mes Messages publics
+            routerLink="/user-public-messages" routerLinkActive="active"
+            (click)="onMyPublicMessages()">Mes Messages publics
             <div class="notificationsBlock">
               <p class="notifications">{{x}}</p>
             </div>
@@ -46,7 +50,8 @@
 
         <li class="nav-item">
           <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
-            routerLink="/unread-messages" routerLinkActive="active">Messages Reçus
+            routerLink="/unread-messages" routerLinkActive="active"
+            (click)="onMyReceivedMessages()">Messages Reçus
             <div class="notificationsBlock">
               <p class="notifications">{{y}}</p>
             </div>
@@ -71,9 +76,9 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-              routerLink="/login" *ngIf="isUserlogin"
-              (click)="onLogout()" routerLinkActive="active">Se deconnecter</a>
+            <a class="nav-link" aria-current="page" *ngIf="isUserlogin"
+              routerLink="/login" (click)="onLogout()"
+              routerLinkActive="active">Se deconnecter</a>
           </li>
 
           <li class="nav-item">

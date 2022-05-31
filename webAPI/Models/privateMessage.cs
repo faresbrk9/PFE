@@ -16,6 +16,9 @@ namespace webAPI.Models
         [Column(TypeName = "nvarchar(2048)")]
         public string content { get; set; }
 
+        [Column(TypeName = "nvarchar(256)")]
+        public string sentBy { get; set; }
+
         public DateTime? sendingDate { get; set; }
         public bool isRead { get; set; }
 

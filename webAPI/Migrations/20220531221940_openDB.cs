@@ -72,6 +72,7 @@ namespace webAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     content = table.Column<string>(type: "nvarchar(2048)", nullable: false),
+                    sentBy = table.Column<string>(type: "nvarchar(256)", nullable: false),
                     sendingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isRead = table.Column<bool>(type: "bit", nullable: false),
                     senderId = table.Column<int>(type: "int", nullable: false),

@@ -31,7 +31,7 @@ export class PublicMessagesComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => this.onLoad(), 500);
-    setInterval(() => this.onResponseLoadClick(), 500);
+    setInterval(() => this.onResponseLoadClick(), 300);
   }
 
   onLoad() {

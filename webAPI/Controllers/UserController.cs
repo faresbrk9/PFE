@@ -25,13 +25,6 @@ namespace webAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Crud
-        [HttpGet("unsecure")]
-        public async Task<IActionResult> GetUnsecure()
-        {
-            var users = await _context.Users.ToListAsync();
-            return Ok(users);
-        }
 
         // GET: api/Crud
         [HttpGet]
@@ -72,8 +65,24 @@ namespace webAPI.Controllers
             {
                 return NotFound();
             }
+            else
+            {
+                var userInfo = new UserPublicInfoDTO();
+                userInfo.Id = user.Id;
+                userInfo.lastName = user.lastName;
+                userInfo.firstName = user.firstName;
+                userInfo.email = user.email;
+                userInfo.CIN = user.CIN;
+                userInfo.tel = user.tel;
+                userInfo.address = user.address;
+                userInfo.fax = user.fax;
+                userInfo.webSite = user.webSite;
+                userInfo.isAccepted = user.isAccepted;
+                userInfo.isBlocked = user.isBlocked;
+                userInfo.isAdmin = user.isAdmin;
 
-            return user;
+                return Ok(userInfo);
+            }
         }
 
         // POST: api/user
@@ -189,6 +198,37 @@ namespace webAPI.Controllers
 
             _context.Entry(use).CurrentValues.SetValues(userEdited);
             await _context.SaveChangesAsync();
+
+            var privateMessages = await _context.PrivateMessages
+            .Where(e => e.senderId == user.Id).ToListAsync();
+            var publicMessages = await _context.PublicMessages
+            .Where(e => e.UserId == user.Id).ToListAsync();
+            var publicMessagesResponses = await _context.PublicMessageResponses
+            .Where(e => e.UserId == user.Id).ToListAsync();
+            foreach (var msg in publicMessages)
+            {
+                var msgupdate = msg;
+                msgupdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
+
+                _context.Entry(msg).CurrentValues.SetValues(msgupdate);
+                await _context.SaveChangesAsync();
+            }
+            foreach (var res in publicMessagesResponses)
+            {
+                var resUpdate = res;
+                resUpdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
+
+                _context.Entry(res).CurrentValues.SetValues(resUpdate);
+                await _context.SaveChangesAsync();
+            }
+            foreach (var msg in privateMessages)
+            {
+                var msgupdate = msg;
+                msgupdate.sentBy = userEdited.lastName + " " + userEdited.firstName;
+
+                _context.Entry(msg).CurrentValues.SetValues(msgupdate);
+                await _context.SaveChangesAsync();
+            }
 
             var userLog = await _context.Users.FindAsync(user.Id);
             var loginRes = new UserResDTO();

@@ -47,7 +47,6 @@ export class ShowUserListComponent implements OnInit {
       setTimeout(() => {
         window.location.reload();
       }, 100);
-
   });
 }
 

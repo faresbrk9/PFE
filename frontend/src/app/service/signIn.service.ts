@@ -45,6 +45,10 @@ editUser(data:any) {
   return this.http.post(`${this.url1}/editUser`, data);
 }
 
+getUser(id:number):Observable<any> {
+  return this.http.get<any>(this.url1 + `/${id}`);
+}
+
 getCompanies():Observable<any[]> {
   return this.http.get<any>(this.url2);
 }

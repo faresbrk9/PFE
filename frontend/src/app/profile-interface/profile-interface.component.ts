@@ -62,7 +62,6 @@ export class ProfileInterfaceComponent implements OnInit {
       setTimeout(() => {
         window.location.reload();
       }, 100);
-
   });
 }
 }

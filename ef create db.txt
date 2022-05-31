@@ -1,0 +1,4 @@
+//create migrations
+dotnet ef migrations add openDB
+//create database of update it
+dotnet ef database update

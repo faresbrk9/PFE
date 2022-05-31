@@ -20,13 +20,6 @@ namespace webAPI.Controllers
             _context = context;
         }
 
-        // GET: api/privateMessage/unsecure
-        [HttpGet("unsecure")]
-        public async Task<IActionResult> GetUnsecure()
-        {
-            var messages = await _context.PrivateMessages.ToListAsync();
-            return Ok(messages);
-        }
 
         // GET: api/privateMessage/loadMessages
         [HttpPost("loadMessages")]
@@ -71,6 +64,7 @@ namespace webAPI.Controllers
 
             var mes = new privateMessage();
             mes.content = message.content;
+            mes.sentBy = message.sentBy;
             mes.sendingDate = MyTime;
             mes.isRead = message.isRead;
             mes.senderId = message.senderId;

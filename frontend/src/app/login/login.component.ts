@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if (data.statusCode == null)
         {this.x = true;
           localStorage.setItem("userInfo", JSON.stringify(data));
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/home').then(() => {window.location.reload();});
         }
       else
         {this.x = false;

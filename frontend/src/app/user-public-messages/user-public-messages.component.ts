@@ -32,8 +32,7 @@ export class UserPublicMessagesComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    setInterval(() => this.onLoad(), 500);
-    setInterval(() => this.onResponseLoadClick(), 500);
+    setInterval(() => this.onLoad(), 100);
   }
 
   onLoad() {
@@ -47,27 +46,38 @@ export class UserPublicMessagesComponent implements OnInit {
       this.x = 0;
       this.intervalTest = false;
     }
-
     else {
       this.x = +y;
       this.intervalTest = false;
+
+      setTimeout(() => {
+        setInterval(() => this.onResponseLoadClick(), 100);
+      }, 500);
+
       setTimeout(() => {
         this.intervalTest = true;
       }, 1000);
+
+      setTimeout(() => {
+        for (var response of this.responseList)
+        {
+          this.responseService.turnRead(response.id).subscribe();
+        }
+      }, 2000);
     }
   }
 
   onResponsesLoad(id: number) {
     this.responseService.getResponsesByMessage(id).subscribe((data: any) => {
-      localStorage.removeItem("selectedUserMessageResponses");
-      localStorage.setItem("selectedUserMessageResponses", JSON.stringify(data));
+      localStorage.removeItem("userPublicMessagesResponses");
+      localStorage.setItem("userPublicMessagesResponses", JSON.stringify(data));
     })
   }
 
   onResponseLoadClick() {
     if (this.x > 0) {
       this.onResponsesLoad(this.x);
-      this.getResponses = localStorage.getItem('selectedUserMessageResponses');
+      this.getResponses = localStorage.getItem('userPublicMessagesResponses');
       this.responseList = JSON.parse(this.getResponses);
     }
   }
@@ -108,19 +118,5 @@ export class UserPublicMessagesComponent implements OnInit {
     this.responseService.sendResponse(response).subscribe();
     this.responseContent = "";
   }
-
-  /*unreadResponsesCount(messageId: any){
-    let variable$!:Observable<any[]>;
-    this.responseService.getUnreadResponsesCount(messageId).subscribe((data: any) => {
-      //localStorage.removeItem("selectedUserMessageUnreadResponsesCount");
-      //localStorage.setItem("selectedUserMessageUnreadResponsesCount", JSON.stringify(data));
-      variable$ = data;
-      return data.count;
-    });
-    //let unreadResponsesCount = localStorage.getItem('selectedUserMessageUnreadResponsesCount');
-    //let responsesCount = JSON.parse(unreadResponsesCount);
-
-    //return variable$;
-  }*/
 
 }

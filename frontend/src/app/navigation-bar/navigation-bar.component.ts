@@ -50,7 +50,49 @@ export class NavigationBarComponent implements OnInit {
 
   onLogout() {
     localStorage.clear();
+    this.router.navigateByUrl('/login');
   }
+
+  onPublicMessages() {
+    this.router.navigateByUrl('/public-messages').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+  }
+
+  onMyProfile() {
+    this.router.navigateByUrl('/user-account').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+  }
+
+  onUsersList() {
+    this.router.navigateByUrl('/show-list').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+  }
+
+  onMyPublicMessages() {
+    this.router.navigateByUrl('/user-public-messages').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+  }
+
+  onMyReceivedMessages() {
+    this.router.navigateByUrl('/unread-messages').then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+  }
+
   get isUserlogin() {
     const user = localStorage.getItem("userInfo");
     return user && user.length > 0;

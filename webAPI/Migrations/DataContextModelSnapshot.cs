@@ -103,6 +103,10 @@ namespace webAPI.Migrations
                     b.Property<DateTime?>("sendingDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("sentBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("receiverId");
