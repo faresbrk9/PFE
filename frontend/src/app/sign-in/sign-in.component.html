@@ -59,7 +59,12 @@
           <div class="form-group col-12">
             <label for="name" class="form-label">Tel</label>
             <input type="tel" class="form-control form-control-lg input-text" name="tel"
-              [(ngModel)]="userModel.tel">
+              [(ngModel)]="userModel.tel" #tel="ngModel"
+              maxLength="8"
+              minlength="8"
+              pattern="[0-9]*">
+            <span class="error-block" *ngIf="!tel.valid">
+              Champ obligatoire</span>
            </div>
 
           <div class="form-group col-12">
