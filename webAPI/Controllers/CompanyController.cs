@@ -41,36 +41,6 @@ namespace webAPI.Controllers
             return Ok(company);
         }
 
-        // PUT: api/Company/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompany(int id, Company company)
-        {
-            if (id != company.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(company).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // DELETE: api/Company/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
@@ -91,36 +61,56 @@ namespace webAPI.Controllers
         [HttpPost("addCompany")]
         public async Task<IActionResult> addCompany(Company company)
         {
-            _context.Companies.Add(company);
-            await _context.SaveChangesAsync();
+            var companyExist = await _context.Companies.Where(x => x.email == company.email).FirstOrDefaultAsync();
 
-            return Ok();
+            if (companyExist == null)
+            {
+                _context.Companies.Add(company);
+                await _context.SaveChangesAsync();
+
+                return Ok(NotFound());
+            }
+            else
+            {
+                return Ok(Unauthorized());
+            }
+
         }
 
         // POST: api/Company
         [HttpPost("editCompany")]
         public async Task<IActionResult> editCompany(Company company)
         {
-            var com = await _context.Companies.FindAsync(company.Id);
-            var companyEdited = com;
+            var companyExist = await _context.Companies.Where(x => x.email == company.email).FirstOrDefaultAsync();
 
-            companyEdited.raisonSociale = company.raisonSociale;
-            companyEdited.capitalSociale = company.capitalSociale;
-            companyEdited.siegeSociale = company.siegeSociale;
-            companyEdited.formeJuridique = company.formeJuridique;
-            companyEdited.matriculFiscal = company.matriculFiscal;
-            companyEdited.RNE = company.RNE;
-            companyEdited.secteurActivite = company.secteurActivite;
-            companyEdited.produits = company.produits;
-            companyEdited.nbreEmployes = company.nbreEmployes;
-            companyEdited.tel = company.tel;
-            companyEdited.email = company.email;
-            companyEdited.fax = company.fax;
-            companyEdited.webSite = company.webSite;
+            if (companyExist == null)
+            {
+                var com = await _context.Companies.FindAsync(company.Id);
+                var companyEdited = com;
 
-            _context.Entry(com).CurrentValues.SetValues(companyEdited);
-            await _context.SaveChangesAsync();
-            return Ok();
+                companyEdited.raisonSociale = company.raisonSociale;
+                companyEdited.capitalSociale = company.capitalSociale;
+                companyEdited.siegeSociale = company.siegeSociale;
+                companyEdited.formeJuridique = company.formeJuridique;
+                companyEdited.matriculFiscal = company.matriculFiscal;
+                companyEdited.RNE = company.RNE;
+                companyEdited.secteurActivite = company.secteurActivite;
+                companyEdited.produits = company.produits;
+                companyEdited.nbreEmployes = company.nbreEmployes;
+                companyEdited.tel = company.tel;
+                companyEdited.email = company.email;
+                companyEdited.fax = company.fax;
+                companyEdited.webSite = company.webSite;
+
+                _context.Entry(com).CurrentValues.SetValues(companyEdited);
+                await _context.SaveChangesAsync();
+                return Ok(NotFound());
+            }
+            else
+            {
+                return Ok(Unauthorized());
+            }
+
         }
 
         private bool UserExists(int id)

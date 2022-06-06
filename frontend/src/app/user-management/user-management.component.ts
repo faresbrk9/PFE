@@ -24,7 +24,7 @@ export class UserManagementComponent implements OnInit {
     let arr:any = [];
     for (var item of JSON.parse(getUserList))
     {
-      if(item.isBlocked == false)
+      if((item.isBlocked == false) && (item.isAccepted == true))
       {
         arr.push(item);
       }
@@ -48,28 +48,15 @@ export class UserManagementComponent implements OnInit {
 
 
   onBlock(id:any){
-    let x: number = +id;
-    this.service.blockUser(x).subscribe();
-    setTimeout(() => {window.location.reload();
-    }, 500);
-
+    this.router.navigate(['/confirmation-box-user-block'], {state: {data: id}});
   }
 
   onUnblock(id:any){
-    let x: number = +id;
-    console.log(x);
-    this.service.unblockUser(x).subscribe();
-    setTimeout(() => {window.location.reload();
-    },500);
-
+    this.router.navigate(['/confirmation-box-user-unblock'], {state: {data: id}});
   }
 
   onDelete(id:any){
-    let x: number = +id;
-    this.service.declineUser(x).subscribe();
-    /*setTimeout(() => {window.location.reload();
-    }, 500);*/
-
+    this.router.navigate(['/confirmation-box-user-delete'], {state: {data: id}});
   }
 
   userList(x:any){

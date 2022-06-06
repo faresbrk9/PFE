@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MailKit.Net.Smtp;
+using MailKit;
+using MailKit.Security;
+using MimeKit;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
@@ -89,10 +93,19 @@ namespace webAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> AddUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            var userExist = await _context.Users.Where(x => x.email == user.email).FirstOrDefaultAsync();
+            if (userExist == null)
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                return Ok(NotFound());
+            }
+            else
+            {
+                return Ok(Unauthorized());
+            }
+
         }
 
         // POST: api/user/login
@@ -102,12 +115,17 @@ namespace webAPI.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(
                 x => x.email == loginReq.email && x.password == loginReq.password);
 
-            if (user == null)
+            if (user == null || user.isAccepted == false)
+            {
+                return Ok(NotFound());
+            }
+
+            else if (user.isBlocked == true)
             {
                 return Ok(Unauthorized());
             }
 
-            else if (user.isAccepted == true)
+            else
             {
                 var loginRes = new UserResDTO();
                 loginRes.Id = user.Id;
@@ -126,10 +144,39 @@ namespace webAPI.Controllers
 
                 return Ok(loginRes);
             }
+        }
 
-            else
+        // POST: api/user/reload
+        [HttpPost("reload")]
+        public async Task<IActionResult> reload(ReloadUserInfoDTO data)
+        {
+            var user = await _context.Users.FindAsync(data.Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else if ((user.isAccepted == false) || (user.isBlocked == true))
             {
                 return Ok(Unauthorized());
+            }
+            else
+            {
+                var loginRes = new UserResDTO();
+                loginRes.Id = user.Id;
+                loginRes.lastName = user.lastName;
+                loginRes.firstName = user.firstName;
+                loginRes.email = user.email;
+                loginRes.CIN = user.CIN;
+                loginRes.tel = user.tel;
+                loginRes.address = user.address;
+                loginRes.fax = user.fax;
+                loginRes.webSite = user.webSite;
+                loginRes.isAccepted = user.isAccepted;
+                loginRes.isBlocked = user.isBlocked;
+                loginRes.isAdmin = user.isAdmin;
+                loginRes.token = data.token;
+
+                return Ok(loginRes);
             }
         }
 
@@ -291,11 +338,33 @@ namespace webAPI.Controllers
 
 
 
-
-
-        private bool UserExists(int id)
+        /*private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }*/
+
+        //send Email
+        private void sendEmail(string subject, string content, string receiver)
+        {
+            // create email message
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress("faresbraiek7@gmail.com", "faresbraiek7@gmail.com"));
+            email.To.Add(new MailboxAddress(receiver, receiver));
+            email.Subject = subject;
+            email.Body = new TextPart("Plain") { Text = content };
+
+            using (var client = new SmtpClient())
+            {
+                // connect
+                client.Timeout = 30000;
+                client.Connect("faresbraiek7@gmail.com", 465, SecureSocketOptions.StartTls);
+                // authenticate
+                client.Authenticate("faresbraiek7@gmail.com", "fares.100");
+                // send message
+                client.Send(email);
+                // disconnect
+                client.Disconnect(true);
+            }
         }
 
         //Jwt Generator

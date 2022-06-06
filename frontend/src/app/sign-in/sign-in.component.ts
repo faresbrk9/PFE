@@ -12,8 +12,10 @@ import { User } from '../model/user';
 export class SignInComponent implements OnInit {
 
   userModel = new User('','','','','','','','','');
-  boolVar = false;
-  boolVar2 = true;
+
+  userFound:boolean = false;
+  inscriptionSuccess:boolean = false;
+
   constructor(private service: SignInService,
               private router: Router) {}
 
@@ -35,14 +37,32 @@ export class SignInComponent implements OnInit {
       address:this.userModel.address,
       fax:this.userModel.fax,
       webSite:this.userModel.webSite,
-      isAccepted:this.boolVar,
-      isAdmin:this.boolVar,
+      isAccepted:false,
+      isBlocked:false,
+      isAdmin:false
+
     }
 
-    this.service.addUser(User).subscribe();
-    setTimeout(() => {this.router.navigateByUrl('/login');
-    }, 500);
+    this.service.addUser(User).subscribe((data:any) => {
+      if (data.statusCode == 401)
+      {
+        this.userFound = true;
+      }
 
+      else if (data.statusCode == 404)
+      {
+        this.userFound = false;
+        this.inscriptionSuccess = true;
+        setTimeout(() => {this.router.navigateByUrl('/login');
+        }, 1000);
+      }
+
+      else
+      {
+        this.userFound = false;
+        this.inscriptionSuccess = false;
+      }
+    });
     }
 
 

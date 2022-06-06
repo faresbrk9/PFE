@@ -93,7 +93,7 @@
   <div class="form-group col-12">
     <label for="name" class="form-label">Fax</label>
     <input type="text" class="form-control" name="cFax"
-      #cFax="ngModel" [(ngModel)]="companyInfo.fax" required>
+      #cFax="ngModel" [(ngModel)]="companyInfo.fax">
       <span class="error-block" *ngIf="!cFax.valid && cFax.touched">
         Champ obligatoire</span>
   </div>
@@ -101,7 +101,7 @@
   <div class="form-group col-12">
     <label for="name" class="form-label">Site Web</label>
     <input type="text" class="form-control" name="cWebSite"
-      #cWebSite="ngModel" [(ngModel)]="companyInfo.webSite" required>
+      #cWebSite="ngModel" [(ngModel)]="companyInfo.webSite">
       <span class="error-block" *ngIf="!cWebSite.valid && cWebSite.touched">
         Champ obligatoire</span>
   </div>
@@ -124,5 +124,10 @@
     </button>
 
   </div>
+
+  <span class="error-block" *ngIf="companyFound">
+    Cette adresse e-mail a été utilisée pour une autre société.</span>
+  <span class="success-block" *ngIf="companyAddSuccess">
+    La mise à jour des informations de cette société a été effectuée avec succès.</span>
 
 </form>

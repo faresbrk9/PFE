@@ -96,6 +96,10 @@
             <button type="reset" class="btn btn-secondary"
               (click)="onReset()">Réinitialiser</button>
           </div>
+          <span class="error-block" *ngIf="userFound">
+            Cette adresse e-mail a été utilisée par un autre compte.</span>
+          <span class="success-block" *ngIf="inscriptionSuccess">
+            Votre demande d'inscription a bien été envoyée à un administrateur.</span>
         </form>
       </div>
     </div>

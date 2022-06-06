@@ -19,6 +19,9 @@ export class CompanyInfoUpdateComponent implements OnInit {
   getCompany = localStorage.getItem('companyInfo');
   company = JSON.parse(this.getCompany);
 
+  companyFound:boolean = false;
+  companyAddSuccess:boolean = false;
+
   constructor(private service: SignInService,
     private router: Router) { }
 
@@ -61,10 +64,26 @@ export class CompanyInfoUpdateComponent implements OnInit {
       webSite:this.companyInfo.webSite,
       userId:parseInt(this.user.id)
     }
-    this.service.editCompany(Company).subscribe();
-    setTimeout(() => {this.router.navigateByUrl('/user-account').then(() => {
-      window.location.reload();
-    });}, 500);
+    this.service.editCompany(Company).subscribe((data:any) => {
+      if (data.statusCode == 401)
+      {
+        this.companyFound = true;
+      }
+
+      else if (data.statusCode == 404)
+      {
+        this.companyFound = false;
+        this.companyAddSuccess = true;
+        setTimeout(() => {this.router.navigateByUrl('/user-account');
+        }, 1000);
+      }
+
+      else
+      {
+        this.companyFound = false;
+        this.companyAddSuccess = false;
+      }
+    });
   }
 
   onCancel() {

@@ -15,6 +15,9 @@ export class AddCompanyComponent implements OnInit {
 
   companyInfo = new Company('','','','','','','','','','','','','','')
 
+  companyFound:boolean = false;
+  companyAddSuccess:boolean = false;
+
   constructor(private service: SignInService,
     private router: Router) { }
 
@@ -38,11 +41,26 @@ export class AddCompanyComponent implements OnInit {
       webSite:this.companyInfo.webSite,
       userId:parseInt(this.user.id)
     }
-    console.log(Company.userId);
-    console.log(Company);
-    this.service.addCompany(Company).subscribe();
-    setTimeout(() => {this.router.navigateByUrl('/user-account');
-    }, 500);
+    this.service.addCompany(Company).subscribe((data:any) => {
+      if (data.statusCode == 401)
+      {
+        this.companyFound = true;
+      }
+
+      else if (data.statusCode == 404)
+      {
+        this.companyFound = false;
+        this.companyAddSuccess = true;
+        setTimeout(() => {this.router.navigateByUrl('/user-account');
+        }, 1000);
+      }
+
+      else
+      {
+        this.companyFound = false;
+        this.companyAddSuccess = false;
+      }
+    });
   }
 
   onCancel() {

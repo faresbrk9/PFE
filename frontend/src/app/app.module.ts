@@ -23,6 +23,12 @@ import { InscriptionManagementComponent } from './inscription-management/inscrip
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserPublicMessagesComponent } from './user-public-messages/user-public-messages.component';
 import { UnreadPrivateMessagesComponent } from './unread-private-messages/unread-private-messages.component';
+import { ConfirmationBoxUserAccountDeleteComponent } from './confirmation-box-user-account-delete/confirmation-box-user-account-delete.component';
+import { ConfirmationBoxPublicMessageDeleteComponent } from './confirmation-box-public-message-delete/confirmation-box-public-message-delete.component';
+import { ConfirmationBoxResponseDeleteComponent } from './confirmation-box-response-delete/confirmation-box-response-delete.component';
+import { ConfirmationBoxUserDeleteComponent } from './confirmation-box-user-delete/confirmation-box-user-delete.component';
+import { ConfirmationBoxUserBlockComponent } from './confirmation-box-user-block/confirmation-box-user-block.component';
+import { ConfirmationBoxUserUnblockComponent } from './confirmation-box-user-unblock/confirmation-box-user-unblock.component';
 
 const appRoutes: Routes = [
   {path: 'home',component: HomeComponent},
@@ -40,6 +46,14 @@ const appRoutes: Routes = [
   {path: 'inscription-management',component: InscriptionManagementComponent},
   {path: 'user-public-messages',component: UserPublicMessagesComponent},
   {path: 'unread-messages',component: UnreadPrivateMessagesComponent},
+
+  {path: 'confirmation-box-user-account-delete',component: ConfirmationBoxUserAccountDeleteComponent},
+  {path: 'confirmation-box-public-message-delete',component: ConfirmationBoxPublicMessageDeleteComponent},
+  {path: 'confirmation-box-response-delete',component: ConfirmationBoxResponseDeleteComponent},
+  {path: 'confirmation-box-user-delete',component: ConfirmationBoxUserDeleteComponent},
+  {path: 'confirmation-box-user-block',component: ConfirmationBoxUserBlockComponent},
+  {path: 'confirmation-box-user-unblock',component: ConfirmationBoxUserUnblockComponent},
+
   {path: '',component: HomeComponent}
 ]
 
@@ -61,7 +75,13 @@ const appRoutes: Routes = [
       PrivateMessagesComponent,
       InscriptionManagementComponent,
       UserPublicMessagesComponent,
-      UnreadPrivateMessagesComponent
+      UnreadPrivateMessagesComponent,
+      ConfirmationBoxUserAccountDeleteComponent,
+      ConfirmationBoxPublicMessageDeleteComponent,
+      ConfirmationBoxResponseDeleteComponent,
+      ConfirmationBoxUserDeleteComponent,
+      ConfirmationBoxUserBlockComponent,
+      ConfirmationBoxUserUnblockComponent
    ],
   imports: [
     BrowserModule,

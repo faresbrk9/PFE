@@ -43,8 +43,10 @@
               <button type="submit" class="btn btn-dark btn-lg btn-block"
                 [disabled]="!userform.valid">Se Connecter</button>
                 <br>
-                <span class="error-block" *ngIf="!x">
-                  Email ou mot de passe incorrecte</span>
+                <span class="error-block" *ngIf="userNotFound">
+                  Email ou mot de passe incorrecte.</span>
+                <span class="error-block" *ngIf="userBlocked">
+                  Votre compte a été bloqué par un administrateur.</span>
             </div>
             <!--<a class="small text-muted" href="#!">Mot de passe oublié ?</a>-->
                   <p class="mb-12 pb-lg-10" style="color: #5b8139;">Vous n’avez pas de compte ? <a routerLink="/sign-up"

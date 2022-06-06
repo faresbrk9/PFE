@@ -67,12 +67,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   onDelete(){
-    let x: number = +this.user.id;
-    this.service.declineUser(x).subscribe();
-    localStorage.clear();
-    setTimeout(() => {window.location.reload();
-    }, 500);
-
+    this.router.navigateByUrl('/confirmation-box-user-account-delete');
   }
 
 }

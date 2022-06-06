@@ -98,15 +98,11 @@ export class PublicMessagesComponent implements OnInit {
   }
 
   onMessageDelete(id:any) {
-    this.messageService.deleteMessage(id).subscribe();
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-
+    this.router.navigate(['/confirmation-box-public-message-delete'], {state: {data: id}});
   }
 
   onResponseDelete(id:any) {
-    this.responseService.deleteResponse(id).subscribe();
+    this.router.navigate(['/confirmation-box-response-delete'], {state: {data: id}});
   }
 
   get isAdmin() {

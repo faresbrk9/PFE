@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private service: SignInService,
     private router: Router) { }
 
-     x:boolean = true;
+     userNotFound:boolean = false;
+     userBlocked:boolean = false;
 
   ngOnInit() {
     /*if (this.isUserlogin) {
@@ -32,13 +33,22 @@ export class LoginComponent implements OnInit {
 
     this.service.login(User).subscribe((data:any) => {
       if (data.statusCode == null)
-        {this.x = true;
+        {
+          this.userNotFound = false;
+          this.userBlocked = false;
           localStorage.setItem("userInfo", JSON.stringify(data));
           this.router.navigateByUrl('/home').then(() => {window.location.reload();});
         }
+      else if(data.statusCode == 404)
+        {
+          this.userNotFound = true;
+          this.userBlocked = false;
+        }
       else
-        {this.x = false;
-          console.log("user not found!");}
+        {
+          this.userBlocked = true;
+          this.userNotFound = false;
+        }
     });
   }
 

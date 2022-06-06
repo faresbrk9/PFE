@@ -153,11 +153,13 @@
 
               <br>
 
-              <button type="button" class="btn btn-primary" (click)="onPrevious()" style="margin-right: 10px;">
+              <button type="button" class="btn btn-primary" (click)="onPrevious()"
+              style="margin-right: 10px;" [disabled]="companyIndex == 0">
                 Précédente
               </button>
 
-              <button type="button" class="btn btn-primary" (click)="onNext()" style="margin-right: 10px;">
+              <button type="button" class="btn btn-primary" (click)="onNext()"
+              style="margin-right: 10px;" [disabled]="companyIndex == companyListLength - 1">
                 Suivante
               </button>
 
