@@ -228,70 +228,80 @@ namespace webAPI.Controllers
 
         }
 
+        // DELETE: api/User/editUser
         [HttpPost("editUser")]
         public async Task<IActionResult> editUser(User user)
         {
-            var use = await _context.Users.FindAsync(user.Id);
-            var userEdited = use;
-
-            userEdited.lastName = user.lastName;
-            userEdited.firstName = user.firstName;
-            userEdited.email = user.email;
-            userEdited.CIN = user.CIN;
-            userEdited.tel = user.tel;
-            userEdited.address = user.address;
-            userEdited.fax = user.fax;
-            userEdited.webSite = user.webSite;
-
-            _context.Entry(use).CurrentValues.SetValues(userEdited);
-            await _context.SaveChangesAsync();
-
-            var privateMessages = await _context.PrivateMessages
-            .Where(e => e.senderId == user.Id).ToListAsync();
-            var publicMessages = await _context.PublicMessages
-            .Where(e => e.UserId == user.Id).ToListAsync();
-            var publicMessagesResponses = await _context.PublicMessageResponses
-            .Where(e => e.UserId == user.Id).ToListAsync();
-            foreach (var msg in publicMessages)
+            var userExist = await _context.Users.Where(x => x.email == user.email).FirstOrDefaultAsync();
+            if (userExist == null || userExist.Id == user.Id)
             {
-                var msgupdate = msg;
-                msgupdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
+                var use = await _context.Users.FindAsync(user.Id);
+                var userEdited = use;
 
-                _context.Entry(msg).CurrentValues.SetValues(msgupdate);
+                userEdited.lastName = user.lastName;
+                userEdited.firstName = user.firstName;
+                userEdited.email = user.email;
+                userEdited.CIN = user.CIN;
+                userEdited.tel = user.tel;
+                userEdited.address = user.address;
+                userEdited.fax = user.fax;
+                userEdited.webSite = user.webSite;
+
+                _context.Entry(use).CurrentValues.SetValues(userEdited);
                 await _context.SaveChangesAsync();
+
+                var privateMessages = await _context.PrivateMessages
+                .Where(e => e.senderId == user.Id).ToListAsync();
+                var publicMessages = await _context.PublicMessages
+                .Where(e => e.UserId == user.Id).ToListAsync();
+                var publicMessagesResponses = await _context.PublicMessageResponses
+                .Where(e => e.UserId == user.Id).ToListAsync();
+                foreach (var msg in publicMessages)
+                {
+                    var msgupdate = msg;
+                    msgupdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
+
+                    _context.Entry(msg).CurrentValues.SetValues(msgupdate);
+                    await _context.SaveChangesAsync();
+                }
+                foreach (var res in publicMessagesResponses)
+                {
+                    var resUpdate = res;
+                    resUpdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
+
+                    _context.Entry(res).CurrentValues.SetValues(resUpdate);
+                    await _context.SaveChangesAsync();
+                }
+                foreach (var msg in privateMessages)
+                {
+                    var msgupdate = msg;
+                    msgupdate.sentBy = userEdited.lastName + " " + userEdited.firstName;
+
+                    _context.Entry(msg).CurrentValues.SetValues(msgupdate);
+                    await _context.SaveChangesAsync();
+                }
+
+                var userLog = await _context.Users.FindAsync(user.Id);
+                var loginRes = new UserResDTO();
+                loginRes.Id = userLog.Id;
+                loginRes.lastName = userLog.lastName;
+                loginRes.firstName = userLog.firstName;
+                loginRes.email = userLog.email;
+                loginRes.CIN = userLog.CIN;
+                loginRes.tel = userLog.tel;
+                loginRes.address = userLog.address;
+                loginRes.fax = userLog.fax;
+                loginRes.webSite = userLog.webSite;
+                loginRes.isAdmin = userLog.isAdmin;
+                loginRes.token = GenerateJWT(userLog);
+
+                return Ok(loginRes);
             }
-            foreach (var res in publicMessagesResponses)
+
+            else
             {
-                var resUpdate = res;
-                resUpdate.publishedBy = userEdited.lastName + " " + userEdited.firstName;
-
-                _context.Entry(res).CurrentValues.SetValues(resUpdate);
-                await _context.SaveChangesAsync();
+                return Ok(Unauthorized());
             }
-            foreach (var msg in privateMessages)
-            {
-                var msgupdate = msg;
-                msgupdate.sentBy = userEdited.lastName + " " + userEdited.firstName;
-
-                _context.Entry(msg).CurrentValues.SetValues(msgupdate);
-                await _context.SaveChangesAsync();
-            }
-
-            var userLog = await _context.Users.FindAsync(user.Id);
-            var loginRes = new UserResDTO();
-            loginRes.Id = userLog.Id;
-            loginRes.lastName = userLog.lastName;
-            loginRes.firstName = userLog.firstName;
-            loginRes.email = userLog.email;
-            loginRes.CIN = userLog.CIN;
-            loginRes.tel = userLog.tel;
-            loginRes.address = userLog.address;
-            loginRes.fax = userLog.fax;
-            loginRes.webSite = userLog.webSite;
-            loginRes.isAdmin = userLog.isAdmin;
-            loginRes.token = GenerateJWT(userLog);
-
-            return Ok(loginRes);
         }
 
         // Post: api/user/blockUser

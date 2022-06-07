@@ -7,13 +7,29 @@
   display: inline;
   background-color: red;
   border-radius: 50%;
+  margin-top: 6px;
   margin-left: 6px;
   margin-right: 6px;
-  font-size: 15px;
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .notificationsBlock {
-background-color: red;
-border-radius: 50%;
-display: inline;
+  background-color: red;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  display: inline;
+}
+.logo {
+  margin-top: -9px;
+  margin-bottom: -9px;
+  margin-left: -13px;
+  margin-right: -3px;
+}
+li {
+  margin-right: 5px;
+}
+a {
+  font-size: 15px;
 }

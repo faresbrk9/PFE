@@ -14,6 +14,9 @@ export class UserInfoUpdateComponent implements OnInit {
   user = JSON.parse(this.getUser);
   userInfo = new User('','','','','','','','','');
 
+  userFound:boolean = false;
+  userUpdateSuccess:boolean = false;
+
   constructor(private service: SignInService,
     private router: Router) { }
 
@@ -42,16 +45,28 @@ export class UserInfoUpdateComponent implements OnInit {
       webSite:this.userInfo.webSite,
       password:"null",
       isAccepted:true,
+      isBlocked:false,
       isAdmin:false
     }
     this.service.editUser(User).subscribe((data:any) => {
-      localStorage.removeItem("userInfo");
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      if (data.statusCode == 401)
+      {
+        this.userFound = true;
+        this.userUpdateSuccess = false;
+      }
+      else
+      {
+        this.userUpdateSuccess = true;
+        this.userFound = false;
+        localStorage.removeItem("userInfo");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setTimeout(() => {this.router.navigateByUrl('/user-account').then(() => {
+          window.location.reload();
+        });
+        }, 500);
+      }
     });
-    setTimeout(() => {this.router.navigateByUrl('/user-account').then(() => {
-      window.location.reload();
-    });
-    }, 500);
+
   }
 
   onCancel() {

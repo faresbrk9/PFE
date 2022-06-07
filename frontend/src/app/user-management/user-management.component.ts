@@ -9,10 +9,14 @@ import { SignInService } from '../service/signIn.service';
 })
 export class UserManagementComponent implements OnInit {
 
-  constructor(private service: SignInService, private router: Router) { }
+  getUser = localStorage.getItem('userInfo');
+  user = JSON.parse(this.getUser);
 
   usersList:any;
   blockedUsersList:any;
+
+  constructor(private service: SignInService, private router: Router) { }
+
 
   ngOnInit() {
     this.service.getUsers().subscribe((data:any) =>

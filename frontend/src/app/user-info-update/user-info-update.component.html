@@ -145,4 +145,10 @@
     </button>
 
   </div>
+
+  <span class="error-block" *ngIf="userFound">
+    Cette adresse e-mail a été utilisée pour un autre compte.</span>
+  <span class="success-block" *ngIf="userUpdateSuccess">
+    La mise à jour des informations de votre profil a été effectuée avec succès.</span>
+
 </form>

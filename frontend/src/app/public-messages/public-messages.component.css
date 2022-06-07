@@ -1,4 +1,6 @@
 .sendInput {
+  margin-left: -25px;
+  width: 1185px;
 
 }
 
@@ -51,14 +53,14 @@
 
 .myMsgBlock {
   background-color: #E0FFFF;
-  margin-left: -50px;
+  margin-left: -55px;
   margin-right: -50px;
   margin-bottom: 35px;
 }
 
 .notMyMsgBlock {
   background-color: white;
-  margin-left: -50px;
+  margin-left: -55px;
   margin-right: -50px;
   margin-bottom: 35px;
 }
